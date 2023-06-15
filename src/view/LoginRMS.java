@@ -225,11 +225,11 @@ public class LoginRMS extends javax.swing.JFrame {
     }//GEN-LAST:event_txtuserActionPerformed
 
     private void txtpwdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtpwdActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here
     }//GEN-LAST:event_txtpwdActionPerformed
 
     private void btnloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnloginActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here
         conn = MyConnection.doConnect();
         try{
             stmt = conn.createStatement();
