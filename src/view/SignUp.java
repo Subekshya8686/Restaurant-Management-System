@@ -10,19 +10,19 @@ import view.*;
 import controller.*;
 import database.*;
 import java.sql.*;
-import javax.swing.table.DefaultTableModel;
+
 
 public class SignUp extends javax.swing.JFrame {
-    Connection conn= null;
-    Statement stmt= null;
-    ResultSet rs =null;
-    PreparedStatement pst =null;
-    DefaultTableModel dtm =null;
+    RegisterModel model;
     
     
     public SignUp() {
         initComponents();
     }
+    
+    public void setMessage(String msg){
+       JOptionPane.showMessageDialog(this, msg);
+   }
     
     public void  myreset(){
         txtFname.setText("");
@@ -329,24 +329,26 @@ public class SignUp extends javax.swing.JFrame {
 
     private void registerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerActionPerformed
         // TODO add your handling code here:
-        conn=MyConnection.doConnect();
-        try{
-            stmt = conn.createStatement();
-            String sql = "insert into register(Fname,Lname,email,phone,Username,Password) values('"+txtFname.getText()+"', '"+txtLname.getText()+"','"+txtEmail.getText()+"','"+txtPhone.getText()+"', '"+txtUser.getText()+"', '"+txtPwd.getText()+"' )";
-            stmt.executeUpdate(sql);
-            JOptionPane.showMessageDialog(this, "Registered Successfully", "Register", JOptionPane.INFORMATION_MESSAGE);
-        }
-        catch(Exception e) {
-            System.out.println(e.getMessage());
-        }
+          RegisterController r =new RegisterController(this);
+
+            
     }//GEN-LAST:event_registerActionPerformed
 
+    public void addLoginListener(ActionListener log){
+        register.addActionListener(log);
+    }
+    
     private void txtUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUserActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtUserActionPerformed
 
     
+   public RegisterModel getUser(){
+       model= new RegisterModel(txtFname.getText(), txtLname.getText(),txtEmail.getText(),txtPhone.getText(), txtUser.getText(), txtPwd.getText());
+       return  model;
+   }
    
+
     
     
     public static void main(String args[]) {
