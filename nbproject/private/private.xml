@@ -3,17 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Java%20NetBeans/RMS/src/Images/Chicken-Chow-Mein-13.jpg</file>
-            <file>file:/D:/Java%20NetBeans/RMS/src/Images/RMS.png</file>
-            <file>file:/D:/Java%20NetBeans/RMS/src/Images/soft-drink-cans.jpg</file>
-            <file>file:/D:/Java%20NetBeans/RMS/src/Images/Momo.jpg</file>
-            <file>file:/D:/Java%20NetBeans/RMS/src/Images/elza_kurbanova_NEab1U1FfKM_unsplash.0.jpg</file>
-            <file>file:/D:/Java%20NetBeans/RMS/src/Images/Burger-and-Fries.jpg</file>
-            <file>file:/D:/Java%20NetBeans/RMS/src/Images/1400x919-MargaritaPizza-555a4065-2573-4b41-bcf3-7193cd095d8f-0-1400x919.jpg</file>
-            <file>file:/D:/Java%20NetBeans/RMS/src/Images/Cappuccino_at_Sightglass_Coffee.jpg</file>
-            <file>file:/D:/Java%20NetBeans/RMS/src/Images/jimbu.jpg</file>
+            <file>file:/D:/Java%20NetBeans/RMS/src/model/RegisterModel.java</file>
+            <file>file:/D:/Java%20NetBeans/RMS/src/view/LoginRMS.java</file>
+            <file>file:/D:/Java%20NetBeans/RMS/src/database/MyConnection.java</file>
+            <file>file:/D:/Java%20NetBeans/RMS/src/controller/LoginController.java</file>
+            <file>file:/D:/Java%20NetBeans/RMS/src/controller/RegisterController.java</file>
             <file>file:/D:/Java%20NetBeans/RMS/src/view/DashboardPage.java</file>
-            <file>file:/D:/Java%20NetBeans/RMS/src/Images/vegetable-soup_thecozyapron_1.jpg</file>
+            <file>file:/D:/Java%20NetBeans/RMS/src/view/SignUp.java</file>
         </group>
     </open-files>
 </project-private>

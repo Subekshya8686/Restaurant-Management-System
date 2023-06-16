@@ -13,8 +13,7 @@ import java.sql.*;
 
 public class LoginRMS extends javax.swing.JFrame {
     LoginModel model;
-    Connection conn= null;
-    Statement stmt =null;
+  
 
     /**
      * Creates new form LoginRMS
@@ -46,7 +45,7 @@ public class LoginRMS extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(430, 200));
 
-        jPanel2.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel2.setBackground(new java.awt.Color(0, 102, 102));
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 3, 36)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -230,16 +229,7 @@ public class LoginRMS extends javax.swing.JFrame {
 
     private void btnloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnloginActionPerformed
         // TODO add your handling code here
-        conn = MyConnection.doConnect();
-        try{
-            stmt = conn.createStatement();
-            String sql = "select * from register where(Username='"+txtuser.getText()+"' AND Password='"+txtpwd.getText()+"' )";
-            stmt.executeQuery(sql);
-            JOptionPane.showMessageDialog(this, "Successfully Logged On ", "Login", JOptionPane.INFORMATION_MESSAGE);
-        }
-        catch(Exception e) {
-            System.out.println(e.getMessage());
-        }
+            LoginController l =new LoginController(this);
     }//GEN-LAST:event_btnloginActionPerformed
 
         public LoginModel getUser(){

@@ -19,14 +19,14 @@ public class LoginController {
     
     public LoginController(LoginRMS view){
         this.view = view;
-        view.addLoginListner(new LoginListener());
+//        view.addLoginListner(new LoginListener());
+          new LoginListener().actionPerformed(); 
         
     }
     
-        class LoginListener implements ActionListener{
+        class LoginListener{
             
-            @Override
-            public void actionPerformed(ActionEvent e1){      
+            public void actionPerformed(){      
                 try{
                     model = view.getUser();
                     if(checkUser(model)){
@@ -41,17 +41,17 @@ public class LoginController {
                     System.out.println(e.getMessage());
                 }
             }
-        }
+        
         
         public boolean checkUser(LoginModel user) throws Exception {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/rms","root","subekshya");
             String sql = "select * from register where Username='"+user.getUsername()+"' AND Password= '"+user.getPassword()+"' ";
             try{
-                Statement stmt =conn.createStatement();
-                ResultSet rs= stmt.executeQuery(sql);
+                stmt =conn.createStatement();
+                rs= stmt.executeQuery(sql);
                 if(rs.next()){
-                    return true;
+                    return (true);
                 }
                 conn.close();
             }
@@ -61,6 +61,7 @@ public class LoginController {
             }
             
             return false;
+        }
         }
 }
 

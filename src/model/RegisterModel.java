@@ -5,17 +5,15 @@
 package model;
 
 public class RegisterModel {
-    String Fname, Lname,Email, Password, Username,Phone;
-    int ID;
+    String Fname, Lname,Email,Phone, Username, Password;
     
-    public RegisterModel(String Fname,String Lname, String Email, String Username,String Password,String Phone, int ID){
+    public RegisterModel(String Fname,String Lname, String Email,String Phone ,String Username,String Password){
         this.Username= Username;
         this.Email = Email;
         this.Fname= Fname;
         this.Lname= Lname;
         this.Password=Password;
         this.Phone= Phone;
-        this.ID =ID;
     }
     
     public String getFName() {
@@ -64,16 +62,5 @@ public class RegisterModel {
 
     public void setPhone(String Phone) {
         this.Phone = Phone;
-    }
-
-    public int getID() {
-        return ID;
-    }
-
-    public void setID(int ID) {
-        this.ID = ID;
-    }
-    
-    
-    
+    }    
 }
