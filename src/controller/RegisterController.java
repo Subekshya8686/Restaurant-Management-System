@@ -21,6 +21,7 @@ public class RegisterController {
     public RegisterController(SignUp view) {
         this.view= view;
         view.addLoginListener(new RegisterListener());
+     
 }
     
     class RegisterListener implements ActionListener{
@@ -30,6 +31,7 @@ public class RegisterController {
                 model= view.getUser();
                 if(checkUser(model)){
                     view.setMessage("Registered Successfully");
+                    
                 }
             else{
                     view.setMessage("Invalid username or password");
@@ -39,7 +41,10 @@ public class RegisterController {
                 
             }
             
+        
         }
+//        
+        
         
         public boolean checkUser(RegisterModel user) throws Exception{
             try{

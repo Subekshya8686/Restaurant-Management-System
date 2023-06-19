@@ -5,6 +5,7 @@
 package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import view.*;
@@ -31,6 +32,11 @@ public class LoginController {
                     model = view.getUser();
                     if(checkUser(model)){
                         view.setMessage("Login Successfully");
+                        DashboardPage d = new DashboardPage();
+                        d.setVisible(true);
+                        this.dispose(); 
+                        
+                        
                     }
                     else{
                         view.setMessage("Invalid username or password");
@@ -61,6 +67,10 @@ public class LoginController {
             }
             
             return false;
+        }
+
+        private void dispose() {
+            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
         }
         }
 }
