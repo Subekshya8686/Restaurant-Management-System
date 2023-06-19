@@ -5,6 +5,7 @@
 package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import view.*;
@@ -31,6 +32,11 @@ public class LoginController {
                     model = view.getUser();
                     if(checkUser(model)){
                         view.setMessage("Login Successfully");
+                        DashboardPage d = new DashboardPage();
+                        d.setVisible(true);
+                        this.dispose(); 
+                        
+                        
                     }
                     else{
                         view.setMessage("Invalid username or password");
@@ -43,6 +49,10 @@ public class LoginController {
             }
         
         
+        private void dispose() {
+            }
+
+
         public boolean checkUser(LoginModel user) throws Exception {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/rms","root","subekshya");
@@ -62,8 +72,8 @@ public class LoginController {
             
             return false;
         }
-        }
-}
+
+    }}
 
     
 

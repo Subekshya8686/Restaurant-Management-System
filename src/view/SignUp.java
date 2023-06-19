@@ -131,6 +131,11 @@ public class SignUp extends javax.swing.JFrame {
         Login.setFont(new java.awt.Font("Times New Roman", 3, 12)); // NOI18N
         Login.setText("Login");
         Login.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        Login.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LoginActionPerformed(evt);
+            }
+        });
 
         jLayeredPane1.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(fname, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -328,19 +333,30 @@ public class SignUp extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void registerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerActionPerformed
-        // TODO add your handling code here:
-          RegisterController r =new RegisterController(this);
 
-            
+
+          RegisterController r =new RegisterController(this);
+//          DashboardPage d =new DashboardPage();
+//            d.setVisible(true);
+//            this.dispose();
+
+           
     }//GEN-LAST:event_registerActionPerformed
 
-    public void addLoginListener(ActionListener log){
-        register.addActionListener(log);
+    public void addRegisterListener(RegisterListener registerListener){
+        register.addActionListener((ActionListener) registerListener);
     }
     
     private void txtUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUserActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtUserActionPerformed
+
+    private void LoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginActionPerformed
+        // TODO add your handling code here:
+        LoginRMS lg = new LoginRMS();
+        lg.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_LoginActionPerformed
 
     
    public RegisterModel getUser(){
