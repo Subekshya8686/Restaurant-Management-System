@@ -334,13 +334,16 @@ public class SignUp extends javax.swing.JFrame {
 
     private void registerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerActionPerformed
 
+
           RegisterController r =new RegisterController(this);
 //          DashboardPage d =new DashboardPage();
 //            d.setVisible(true);
 //            this.dispose();
+
+           
     }//GEN-LAST:event_registerActionPerformed
 
-    public void addLoginListener(ActionListener log){
+    public void addRegisterListener(ActionListener log){
         register.addActionListener(log);
     }
     
