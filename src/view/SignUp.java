@@ -343,8 +343,8 @@ public class SignUp extends javax.swing.JFrame {
            
     }//GEN-LAST:event_registerActionPerformed
 
-    public void addRegisterListener(ActionListener log){
-        register.addActionListener(log);
+    public void addRegisterListener(RegisterListener registerListener){
+        register.addActionListener((ActionListener) registerListener);
     }
     
     private void txtUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUserActionPerformed
