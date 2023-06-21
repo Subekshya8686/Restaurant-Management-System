@@ -20,11 +20,12 @@ public class RegisterController {
     
     public RegisterController(SignUp view) {
         this.view= view;
-        view.addRegisterListener(new RegisterListener()); 
+        new RegisterListener().actionPerformed();
+    } 
     
-    class RegisterListener implements ActionListener{
-        @Override
-        public void actionPerformed(ActionEvent e){
+    class RegisterListener {
+        
+        public void actionPerformed(){
             try{
                 model= view.getUser();
                 if(checkUser(model)){
@@ -53,8 +54,8 @@ public class RegisterController {
                 pst.setString(6, user.getPassword());
                 
                 pst.executeUpdate();
-                System.out.println("Data Inserted");
-                JOptionPane.showConfirmDialog(null, "Registered Successfully");
+               
+               
             }
             catch(Exception e){
                 System.out.println(e.getMessage());
@@ -62,4 +63,4 @@ public class RegisterController {
             return false;
         }
     }
-    }}
+    }
