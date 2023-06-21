@@ -348,12 +348,14 @@ public class SignUp extends javax.swing.JFrame {
            
     }//GEN-LAST:event_registerActionPerformed
 
+
    
     
     public void addRegisterListener(ActionListener log)
 {
    register.addActionListener(log);
 }
+
     
     private void txtUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUserActionPerformed
         // TODO add your handling code here:

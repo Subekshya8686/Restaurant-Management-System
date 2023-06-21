@@ -20,8 +20,10 @@ public class RegisterController {
     
     public RegisterController(SignUp view) {
         this.view= view;
+
         new RegisterListener().actionPerformed();
     } 
+
     
     class RegisterListener {
         
@@ -63,4 +65,6 @@ public class RegisterController {
             return false;
         }
     }
+
     }
+
