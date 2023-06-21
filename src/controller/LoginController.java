@@ -30,7 +30,7 @@ public class LoginController {
             public void actionPerformed(){      
                 try{
                     model = view.getUser();
-                    if(checkUser(model)){
+                    if(checkUser1(model)){
                         view.setMessage("Login Successfully");
                         DashboardPage d = new DashboardPage();
                         d.setVisible(true);
@@ -53,7 +53,9 @@ public class LoginController {
             }
 
 
-        public boolean checkUser(LoginModel user) throws Exception {
+
+        public boolean checkUser1(LoginModel user) throws Exception {
+
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/rms","root","subekshya");
             String sql = "select * from register where Username='"+user.getUsername()+"' AND Password= '"+user.getPassword()+"' ";
