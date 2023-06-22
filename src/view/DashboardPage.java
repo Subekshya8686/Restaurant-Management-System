@@ -9,6 +9,7 @@ import java.util.GregorianCalendar;
 import java.util.Vector;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+
 import javax.swing.table.DefaultTableModel;
 
 public class DashboardPage extends javax.swing.JFrame {
@@ -43,6 +44,7 @@ public class DashboardPage extends javax.swing.JFrame {
         
         
     }
+
     public void init(){
         
     }
@@ -124,6 +126,7 @@ public class DashboardPage extends javax.swing.JFrame {
             coffeeCheck.setSelected(false);
             icecreamCheck.setSelected(false);
     }
+
     
 
     /**
@@ -225,6 +228,7 @@ public class DashboardPage extends javax.swing.JFrame {
         jLabel48 = new javax.swing.JLabel();
         jSpinner9 = new javax.swing.JSpinner();
         icecreamCheck = new javax.swing.JCheckBox();
+
         jLabel3 = new javax.swing.JLabel();
         date_txt = new javax.swing.JLabel();
         btnStaff = new javax.swing.JButton();
@@ -235,12 +239,32 @@ public class DashboardPage extends javax.swing.JFrame {
         jTextFieldAmount = new javax.swing.JTextField();
         jTextFieldTotalamount = new javax.swing.JTextField();
         jLabel49 = new javax.swing.JLabel();
+// =======
+//         jPanel5 = new javax.swing.JPanel();
+//         btnExit = new javax.swing.JButton();
+//         btnReset = new javax.swing.JButton();
+//         jPanel4 = new javax.swing.JPanel();
+//         jLabel49 = new javax.swing.JLabel();
+//         jLabel50 = new javax.swing.JLabel();
+//         jLabel51 = new javax.swing.JLabel();
+//         jLabel52 = new javax.swing.JLabel();
+//         jTextField1 = new javax.swing.JTextField();
+//         jTextField2 = new javax.swing.JTextField();
+//         jTextField5 = new javax.swing.JTextField();
+
+// >>>>>>> 1e0a704f528b90db769a6b9affdb1ceb7dd6ed60
         btnTotal = new javax.swing.JButton();
         btnReceipt = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblBill = new javax.swing.JTable();
         btnExit = new javax.swing.JButton();
         btnReset = new javax.swing.JButton();
+// =======
+//         jLabel3 = new javax.swing.JLabel();
+//         date_txt = new javax.swing.JLabel();
+//         btnStaff = new javax.swing.JButton();
+
+// >>>>>>> 1e0a704f528b90db769a6b9affdb1ceb7dd6ed60
 
         jMenu1.setText("jMenu1");
 
@@ -374,6 +398,7 @@ public class DashboardPage extends javax.swing.JFrame {
 
         jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel13.setText("350");
+
 
         jSpinner2.setModel(new javax.swing.SpinnerNumberModel(0, 0, 50, 1));
 
@@ -515,6 +540,7 @@ public class DashboardPage extends javax.swing.JFrame {
         jLabel23.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel23.setText("600");
 
+
         jSpinner4.setModel(new javax.swing.SpinnerNumberModel(0, 0, 50, 1));
 
         thakaliCheck.addActionListener(new java.awt.event.ActionListener() {
@@ -567,8 +593,10 @@ public class DashboardPage extends javax.swing.JFrame {
                 .addGap(3, 3, 3)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel22)
+
                     .addComponent(thakaliCheck))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+
         );
 
         jLabelImage4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -588,6 +616,7 @@ public class DashboardPage extends javax.swing.JFrame {
 
         jLabel28.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel28.setText("100");
+
 
         jSpinner5.setModel(new javax.swing.SpinnerNumberModel(0, 0, 50, 1));
 
@@ -642,6 +671,7 @@ public class DashboardPage extends javax.swing.JFrame {
                     .addComponent(jLabel27)
                     .addComponent(chowmeinCheck))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+
         );
 
         jLabelImage5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -661,6 +691,7 @@ public class DashboardPage extends javax.swing.JFrame {
 
         jLabel33.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel33.setText("80");
+
 
         jSpinner6.setModel(new javax.swing.SpinnerNumberModel(0, 0, 50, 1));
 
@@ -784,8 +815,10 @@ public class DashboardPage extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel37)
+
                     .addComponent(drinksCheck))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+
         );
 
         jLabelImage7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -806,6 +839,7 @@ public class DashboardPage extends javax.swing.JFrame {
 
         jLabel43.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel43.setText("180");
+
 
         jSpinner8.setModel(new javax.swing.SpinnerNumberModel(0, 0, 50, 1));
 
@@ -1275,6 +1309,10 @@ public class DashboardPage extends javax.swing.JFrame {
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         reset();
     }//GEN-LAST:event_btnResetActionPerformed
+
+    // private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+    //     // TODO add your handling code here:
+    // }//GEN-LAST:event_btnResetActionPerformed
 
     /**
      * @param args the command line arguments
