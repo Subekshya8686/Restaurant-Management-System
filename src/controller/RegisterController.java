@@ -20,16 +20,19 @@ public class RegisterController {
     
     public RegisterController(SignUp view) {
         this.view= view;
-        view.addLoginListener(new RegisterListener());
-}
+
+        new RegisterListener().actionPerformed();
+    } 
+
     
-    class RegisterListener implements ActionListener{
-        @Override
-        public void actionPerformed(ActionEvent e){
+    class RegisterListener {
+        
+        public void actionPerformed(){
             try{
                 model= view.getUser();
                 if(checkUser(model)){
                     view.setMessage("Registered Successfully");
+
                 }
             else{
                     view.setMessage("Invalid username or password");
@@ -37,10 +40,8 @@ public class RegisterController {
             } 
             catch(Exception e1){
                 
-            }
-            
-        }
-        
+            }}
+
         public boolean checkUser(RegisterModel user) throws Exception{
             try{
                 Class.forName("com.mysql.cj.jdbc.Driver");
@@ -55,8 +56,8 @@ public class RegisterController {
                 pst.setString(6, user.getPassword());
                 
                 pst.executeUpdate();
-                System.out.println("Data Inserted");
-                JOptionPane.showConfirmDialog(null, "Registered Successfully");
+               
+               
             }
             catch(Exception e){
                 System.out.println(e.getMessage());
@@ -64,4 +65,6 @@ public class RegisterController {
             return false;
         }
     }
-}
+
+    }
+
