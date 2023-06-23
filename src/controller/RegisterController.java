@@ -29,13 +29,16 @@ public class RegisterController {
         
         public void actionPerformed(){
             try{
-                model= view.getUser();
+                model= view.getUser(); 
                 if(checkUser(model)){
-                    view.setMessage("Registered Successfully");
+
+                    view.setMessage("Invalid username or password");
+
+
 
                 }
             else{
-                    view.setMessage("Invalid username or password");
+                    view.setMessage("Registered Successfully");
                     }
             } 
             catch(Exception e1){
@@ -66,5 +69,7 @@ public class RegisterController {
         }
     }
 
+
     }
+
 
