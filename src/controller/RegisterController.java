@@ -20,8 +20,10 @@ public class RegisterController {
     
     public RegisterController(SignUp view) {
         this.view= view;
+
         new RegisterListener().actionPerformed();
     } 
+
     
     class RegisterListener {
         
@@ -29,7 +31,9 @@ public class RegisterController {
             try{
                 model= view.getUser(); 
                 if(checkUser(model)){
+
                     view.setMessage("Invalid username or password");
+
 
 
                 }
@@ -64,4 +68,8 @@ public class RegisterController {
             return false;
         }
     }
+
+
     }
+
+

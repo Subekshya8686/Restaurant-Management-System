@@ -32,11 +32,9 @@ public class LoginController {
                 try{
                     model = view.getUser();
                     if(checkUser1(model)){
+
                     DashboardPage d = new DashboardPage();
                     d.setVisible(true);
-                              
-                               
-                        
                               
                     }
                     else{
@@ -50,6 +48,7 @@ public class LoginController {
             }
         
         
+
 //        private void dispose() {
 //            }
 
