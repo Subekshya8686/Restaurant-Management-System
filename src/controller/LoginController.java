@@ -17,7 +17,8 @@ public class LoginController {
     LoginRMS view;
     ResultSet rs;
     Statement stmt;
-    
+
+//           
     public LoginController(LoginRMS view){
         this.view = view;
 //        view.addLoginListner(new LoginListener());
@@ -26,17 +27,17 @@ public class LoginController {
     }
     
         class LoginListener{
-            
+                       
             public void actionPerformed(){      
                 try{
                     model = view.getUser();
                     if(checkUser1(model)){
-                        view.setMessage("Login Successfully");
-                        DashboardPage d = new DashboardPage();
-                        d.setVisible(true);
-                        this.dispose(); 
+                    DashboardPage d = new DashboardPage();
+                    d.setVisible(true);
+                              
+                               
                         
-                        
+                              
                     }
                     else{
                         view.setMessage("Invalid username or password");
@@ -49,8 +50,8 @@ public class LoginController {
             }
         
         
-        private void dispose() {
-            }
+//        private void dispose() {
+//            }
 
 
         public boolean checkUser1(LoginModel user) throws Exception {

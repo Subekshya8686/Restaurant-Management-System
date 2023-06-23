@@ -232,7 +232,7 @@ public class LoginRMS extends javax.swing.JFrame {
     private void btnloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnloginActionPerformed
         // TODO add your handling code here
             LoginController l =new LoginController(this);
-
+            dispose();
     }//GEN-LAST:event_btnloginActionPerformed
 
         public LoginModel getUser(){
@@ -243,6 +243,7 @@ public class LoginRMS extends javax.swing.JFrame {
         
         public void setMessage(String msg){
             JOptionPane.showMessageDialog(this, msg);
+           
         }
     
         public void addLoginListner(ActionListener log){
