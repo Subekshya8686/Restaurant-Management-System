@@ -47,6 +47,7 @@ public class LoginRMS extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(16, 101, 82));
 
+
         jLabel3.setFont(new java.awt.Font("Times New Roman", 3, 36)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Welcome");
@@ -230,6 +231,7 @@ public class LoginRMS extends javax.swing.JFrame {
     private void btnloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnloginActionPerformed
         // TODO add your handling code here
             LoginController l =new LoginController(this);
+            dispose();
     }//GEN-LAST:event_btnloginActionPerformed
 
         public LoginModel getUser(){
@@ -240,6 +242,7 @@ public class LoginRMS extends javax.swing.JFrame {
         
         public void setMessage(String msg){
             JOptionPane.showMessageDialog(this, msg);
+           
         }
     
         public void addLoginListner(ActionListener log){
