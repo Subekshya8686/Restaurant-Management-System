@@ -33,7 +33,7 @@ public class LoginController {
                     model = view.getUser();
                     if(checkUser1(model)){
 
-                    DashboardPage d = new DashboardPage();
+                    NewDashboard d = new NewDashboard();
                     d.setVisible(true);
                               
                     }
