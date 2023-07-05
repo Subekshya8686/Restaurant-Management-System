@@ -5,47 +5,49 @@
 package model;
 
 public class RegisterModel {
-    String Fname, Lname,Email,Phone, Username, Password;
+    String fname, lname,email,phone, Username, pass, securityque, answer;
     
-    public RegisterModel(String Fname,String Lname, String Email,String Phone ,String Username,String Password){
+    public RegisterModel(String Fname,String Lname, String Email,String Phone ,String Username,String Password, String Answer, String Security){
         this.Username= Username;
-        this.Email = Email;
-        this.Fname= Fname;
-        this.Lname= Lname;
-        this.Password=Password;
-        this.Phone= Phone;
+        this.email = Email;
+        this.fname= Fname;
+        this.lname= Lname;
+        this.pass = Password;
+        this.phone= Phone;
+        this.securityque = Security;
+        this.answer = Answer;
     }
     
-    public String getFName() {
-        return Fname;
+    public String getfname() {
+        return fname;
     }
 
-    public void setFName(String FName) {
-        this.Fname = FName;
+    public void setfname(String Fname) {
+        this.fname = Fname;
     }
 
-    public String getLname() {
-        return Lname;
+    public String getlname() {
+        return lname;
     }
 
-    public void setLname(String Lname) {
-        this.Lname = Lname;
+    public void setlname(String Lname) {
+        this.lname = Lname;
     }
 
-    public String getEmail() {
-        return Email;
+    public String getemail() {
+        return email;
     }
 
-    public void setEmail(String Email) {
-        this.Email = Email;
+    public void setemail(String Email) {
+        this.email = Email;
     }
 
-    public String getPassword() {
-        return Password;
+    public String getpass() {
+        return pass;
     }
 
-    public void setPassword(String Password) {
-        this.Password = Password;
+    public void setpass (String Password) {
+        this.pass = Password;
     }
 
     public String getUsername() {
@@ -56,11 +58,27 @@ public class RegisterModel {
         this.Username = Username;
     }
 
-    public String getPhone() {
-        return Phone;
+    public String getphone() {
+        return phone;
     }
 
-    public void setPhone(String Phone) {
-        this.Phone = Phone;
+    public void setphone(String Phone) {
+        this.phone = Phone;
+    }    
+    
+    public String getsecurityque() {
+        return securityque;
+    }
+
+    public void setsecurityque(String Security){
+        this.securityque = Security;
+    }  
+    
+    public String getanswer() {
+        return answer;
+    }
+
+    public void setanswer(String Answer) {
+        this.answer = Answer;
     }    
 }
