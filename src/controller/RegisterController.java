@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import java.sql.*; 
 import model.*;
 import view.*;
+import view.SignUp;
 
 public class RegisterController {
     RegisterModel model;
@@ -20,47 +21,45 @@ public class RegisterController {
     
     public RegisterController(SignUp view) {
         this.view= view;
-
-        new RegisterListener().actionPerformed();
-    } 
-
+        view.addLoginListener(new RegisterListener());
+}
     
-    class RegisterListener {
-        
-        public void actionPerformed(){
+    class RegisterListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e){
             try{
-                model= view.getUser(); 
+                model= view.getUser();
                 if(checkUser(model)){
-
-                    view.setMessage("Invalid username or password");
-
-
-
+                    view.setMessage("Registered Successfully");
                 }
             else{
-                    view.setMessage("Registered Successfully");
+                    view.setMessage("Invalid username or password");
                     }
             } 
             catch(Exception e1){
                 
-            }}
-
+            }
+            
+        }
+        
         public boolean checkUser(RegisterModel user) throws Exception{
             try{
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/rms","root","subekshya");
-                String sql = "insert into register(fname, lname, email, phone, Username, Password) values(?,?,?,?,?,?)";
+                String sql = "insert into signup(fname, lname, email, phone, Username, pass, securityque, answer) values(?,?,?,?,?,?,?,?)";
                 pst = conn.prepareStatement(sql);
-                pst.setString(1, user.getFName());
-                pst.setString(2, user.getLname());
-                pst.setString(3, user.getEmail());
-                pst.setString(4, user.getPhone());
+                pst.setString(1, user.getfname());
+                pst.setString(2, user.getlname());
+                pst.setString(3, user.getemail());
+                pst.setString(4, user.getphone());
                 pst.setString(5, user.getUsername());
-                pst.setString(6, user.getPassword());
+                pst.setString(6, user.getpass());
+                pst.setString(7,user.getsecurityque());
+                pst.setString(8,user.getanswer());
                 
                 pst.executeUpdate();
-               
-               
+                System.out.println("Data Inserted");
+                JOptionPane.showConfirmDialog(null, "Registered Successfully");
             }
             catch(Exception e){
                 System.out.println(e.getMessage());
@@ -68,8 +67,4 @@ public class RegisterController {
             return false;
         }
     }
-
-
-    }
-
-
+}
