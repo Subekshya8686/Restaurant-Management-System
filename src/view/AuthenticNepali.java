@@ -53,12 +53,12 @@ public class AuthenticNepali extends javax.swing.JFrame {
         update = new javax.swing.JButton();
         savedata = new javax.swing.JButton();
         price = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        Price = new javax.swing.JLabel();
+        Quantity = new javax.swing.JLabel();
         quantity = new javax.swing.JTextField();
         itemName = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        ItemName = new javax.swing.JLabel();
+        ItemNo = new javax.swing.JLabel();
         itemNo = new javax.swing.JTextField();
         Show1 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
@@ -168,12 +168,12 @@ public class AuthenticNepali extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setBackground(new java.awt.Color(131, 197, 190));
-        jLabel4.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel4.setText("Price");
+        Price.setBackground(new java.awt.Color(131, 197, 190));
+        Price.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        Price.setText("Price");
 
-        jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel3.setText("Quantity");
+        Quantity.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        Quantity.setText("Quantity");
 
         quantity.setBackground(new java.awt.Color(131, 197, 190));
         quantity.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
@@ -195,11 +195,11 @@ public class AuthenticNepali extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel2.setText("Item Name");
+        ItemName.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        ItemName.setText("Item Name");
 
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel1.setText("Item No.");
+        ItemNo.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        ItemNo.setText("Item No.");
 
         itemNo.setBackground(new java.awt.Color(131, 197, 190));
         itemNo.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
@@ -243,19 +243,18 @@ public class AuthenticNepali extends javax.swing.JFrame {
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel1)
-                                            .addComponent(jLabel2)
-                                            .addComponent(jLabel3))
+                                            .addComponent(ItemNo)
+                                            .addComponent(ItemName)
+                                            .addComponent(Quantity))
                                         .addGap(47, 47, 47)
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(itemName, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(itemNo, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(quantity, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jLabel4)
+                                        .addComponent(Price)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(price, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(11, 11, 11))
+                                        .addComponent(price, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -281,18 +280,18 @@ public class AuthenticNepali extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(itemNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))
+                            .addComponent(ItemNo))
                         .addGap(30, 30, 30)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(itemName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
+                            .addComponent(ItemName))
                         .addGap(31, 31, 31)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(quantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
+                            .addComponent(Quantity))
                         .addGap(27, 27, 27)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
+                            .addComponent(Price)
                             .addComponent(price, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(36, 36, 36)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -518,6 +517,10 @@ public class AuthenticNepali extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JTable AuthenticNepali;
     public javax.swing.JTable Drinks;
+    private javax.swing.JLabel ItemName;
+    private javax.swing.JLabel ItemNo;
+    private javax.swing.JLabel Price;
+    private javax.swing.JLabel Quantity;
     private javax.swing.JButton Show;
     private javax.swing.JButton Show1;
     private javax.swing.JButton btnAdd;
@@ -525,10 +528,6 @@ public class AuthenticNepali extends javax.swing.JFrame {
     private javax.swing.JTextField itemName;
     private javax.swing.JTextField itemNo;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane3;
