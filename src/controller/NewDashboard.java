@@ -8,6 +8,10 @@ package controller;
  *
  * @author 97798
  */
-public class Dashboard {
+public class NewDashboard {
+
+    void setVisible(boolean b) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
 }
