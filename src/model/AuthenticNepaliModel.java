@@ -10,13 +10,20 @@ package model;
  */
 public class AuthenticNepaliModel {
      String ItemNo, ItemName,Quantity, Price;
+     
+     
+     
+
+   
     
-    public AuthenticNepaliModel(String itemNo,String itemName, String quantity,String price){
+    public AuthenticNepaliModel(String itemNo, String itemName, String quantity, String price){
         this.ItemNo = itemNo;
         this.ItemName = itemName;
         this.Quantity = quantity;
         this.Price = price;
     }
+
+    
     
     public String getItemNo() {
         return ItemNo;

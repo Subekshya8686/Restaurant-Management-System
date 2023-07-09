@@ -4,12 +4,15 @@
  */
 package view;
 
+import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import model.AuthenticNepaliModel;
+import controller.AuthenticNepaliController;
 
 /**
  *
@@ -17,10 +20,12 @@ import javax.swing.table.DefaultTableModel;
  */
 public class AuthenticNepali extends javax.swing.JFrame {
     PreparedStatement pst = null;
-
+    AuthenticNepaliModel model;
     
      
-    DefaultTableModel model = null;
+    DefaultTableModel Model = null;
+
+    
 
     /**
      * Creates new form AuthenticNepali
@@ -47,11 +52,10 @@ public class AuthenticNepali extends javax.swing.JFrame {
         Show = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        AuthenticNepali = new javax.swing.JTable();
-        btnAdd = new javax.swing.JButton();
+        AuthenticNepalistock = new javax.swing.JTable();
         btnDelete = new javax.swing.JButton();
         update = new javax.swing.JButton();
-        savedata = new javax.swing.JButton();
+        savedatabtn = new javax.swing.JButton();
         price = new javax.swing.JTextField();
         Price = new javax.swing.JLabel();
         Quantity = new javax.swing.JLabel();
@@ -102,8 +106,8 @@ public class AuthenticNepali extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(131, 197, 190));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Authentic Nepali Stocks", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.BELOW_TOP, new java.awt.Font("Times New Roman", 3, 24))); // NOI18N
 
-        AuthenticNepali.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
-        AuthenticNepali.setModel(new javax.swing.table.DefaultTableModel(
+        AuthenticNepalistock.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        AuthenticNepalistock.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -111,21 +115,10 @@ public class AuthenticNepali extends javax.swing.JFrame {
                 "Item No.", "Item Name", "Quantity", "Price"
             }
         ));
-        AuthenticNepali.setColumnSelectionAllowed(true);
-        AuthenticNepali.setGridColor(new java.awt.Color(216, 246, 210));
-        AuthenticNepali.setOpaque(false);
-        jScrollPane4.setViewportView(AuthenticNepali);
-
-        btnAdd.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        btnAdd.setText("Add");
-        btnAdd.setBorderPainted(false);
-        btnAdd.setContentAreaFilled(false);
-        btnAdd.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnAdd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddActionPerformed(evt);
-            }
-        });
+        AuthenticNepalistock.setColumnSelectionAllowed(true);
+        AuthenticNepalistock.setGridColor(new java.awt.Color(216, 246, 210));
+        AuthenticNepalistock.setOpaque(false);
+        jScrollPane4.setViewportView(AuthenticNepalistock);
 
         btnDelete.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         btnDelete.setText("Delete");
@@ -148,13 +141,14 @@ public class AuthenticNepali extends javax.swing.JFrame {
             }
         });
 
-        savedata.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        savedata.setText("Save Data");
-        savedata.setBorderPainted(false);
-        savedata.setContentAreaFilled(false);
-        savedata.addActionListener(new java.awt.event.ActionListener() {
+        savedatabtn.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        savedatabtn.setText("Save Data");
+        savedatabtn.setBorderPainted(false);
+        savedatabtn.setContentAreaFilled(false);
+        savedatabtn.setCursor(new java.awt.Cursor(java.awt.Cursor.MOVE_CURSOR));
+        savedatabtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                savedataActionPerformed(evt);
+                savedatabtnActionPerformed(evt);
             }
         });
 
@@ -211,7 +205,11 @@ public class AuthenticNepali extends javax.swing.JFrame {
             }
         });
 
+        Show1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         Show1.setText("Show Stocks");
+        Show1.setBorderPainted(false);
+        Show1.setContentAreaFilled(false);
+        Show1.setCursor(new java.awt.Cursor(java.awt.Cursor.MOVE_CURSOR));
         Show1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Show1ActionPerformed(evt);
@@ -236,37 +234,32 @@ public class AuthenticNepali extends javax.swing.JFrame {
                         .addComponent(jButton1)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 16, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(ItemNo)
+                                        .addComponent(ItemName)
+                                        .addComponent(Quantity))
+                                    .addGap(47, 47, 47)
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(itemName, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(itemNo, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(quantity, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                    .addComponent(Price)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(price, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 5, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(ItemNo)
-                                            .addComponent(ItemName)
-                                            .addComponent(Quantity))
-                                        .addGap(47, 47, 47)
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(itemName, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(itemNo, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(quantity, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                        .addComponent(Price)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(price, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnDelete)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(update)
+                                .addGap(18, 18, 18)
+                                .addComponent(savedatabtn)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(savedata)))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Show1)
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(Show1)))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(29, 29, 29))))
         );
         jPanel2Layout.setVerticalGroup(
@@ -274,10 +267,9 @@ public class AuthenticNepali extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButton1)
-                .addGap(26, 26, 26)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(itemNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(ItemNo))
@@ -293,14 +285,15 @@ public class AuthenticNepali extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Price)
                             .addComponent(price, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(36, 36, 36)
+                        .addGap(50, 50, 50)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnAdd)
                             .addComponent(btnDelete)
                             .addComponent(update)
-                            .addComponent(savedata))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Show1)
+                            .addComponent(savedatabtn)
+                            .addComponent(Show1)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -318,32 +311,14 @@ public class AuthenticNepali extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        // TODO add your handling code here:
-        if(itemNo.getText().equals("") || itemName.getText().equals("") || quantity.getText().equals("") || price.getText().equals("")){
-            JOptionPane.showMessageDialog(this, "Please enter all stocks");
-        }else{
-            String data[] = {itemNo.getText(),itemName.getText(),quantity.getText(),price.getText()};
-            DefaultTableModel model = (DefaultTableModel) AuthenticNepali.getModel();
-            model.addRow(data);
-            JOptionPane.showMessageDialog(this, "Stock added auccessfully!!");
-        }
-
-        itemNo.setText("");
-        itemName.setText("");
-        quantity.setText("");
-        price.setText("");
-
-    }//GEN-LAST:event_btnAddActionPerformed
-
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
-        DefaultTableModel model = (DefaultTableModel) AuthenticNepali.getModel();
+        DefaultTableModel Model = (DefaultTableModel) AuthenticNepalistock.getModel();
 
-        if(AuthenticNepali.getSelectedRowCount() ==1){
-            model.removeRow(AuthenticNepali.getSelectedRow());
+        if(AuthenticNepalistock.getSelectedRowCount() ==1){
+             Model.removeRow(AuthenticNepalistock.getSelectedRow());
         }else{
-            if(AuthenticNepali.getRowCount()==0){
+            if(AuthenticNepalistock.getRowCount()==0){
                 JOptionPane.showMessageDialog(this, "Stock is empty!!");
             }else{
                 JOptionPane.showMessageDialog(this, "Please select Single row for deletion");
@@ -356,21 +331,21 @@ public class AuthenticNepali extends javax.swing.JFrame {
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
         // TODO add your handling code here:
 
-        DefaultTableModel model = (DefaultTableModel) AuthenticNepali.getModel();
-        if(AuthenticNepali.getSelectedRowCount()==1){
+        DefaultTableModel Model = (DefaultTableModel) AuthenticNepalistock.getModel();
+        if(AuthenticNepalistock.getSelectedRowCount()==1){
             String ItemNo = itemNo.getText();
             String ItemName = itemName.getText();
             String Quantity = quantity.getText();
             String Price = price.getText();
 
-            model.setValueAt(ItemNo,AuthenticNepali.getSelectedRow(),0);
-            model.setValueAt(ItemName,AuthenticNepali.getSelectedRow(),1);
-            model.setValueAt(Quantity,AuthenticNepali.getSelectedRow(),2);
-            model.setValueAt(Price,AuthenticNepali.getSelectedRow(),3);
+            Model.setValueAt(ItemNo,AuthenticNepalistock.getSelectedRow(),0);
+            Model.setValueAt(ItemName,AuthenticNepalistock.getSelectedRow(),1);
+            Model.setValueAt(Quantity,AuthenticNepalistock.getSelectedRow(),2);
+            Model.setValueAt(Price,AuthenticNepalistock.getSelectedRow(),3);
 
             JOptionPane.showMessageDialog(this, "Update Successfully!!");
         }else{
-            if(AuthenticNepali.getRowCount()==0){
+            if(AuthenticNepalistock.getRowCount()==0){
                 JOptionPane.showMessageDialog(this, "Sotck is empty!!");
             }else{
                 JOptionPane.showMessageDialog(this, "Please select single row for update!!");
@@ -379,23 +354,24 @@ public class AuthenticNepali extends javax.swing.JFrame {
 
     }//GEN-LAST:event_updateActionPerformed
 
-    private void savedataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_savedataActionPerformed
+    private void savedatabtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_savedatabtnActionPerformed
         // TODO add your handling code here:
-        DefaultTableModel model = (DefaultTableModel) AuthenticNepali.getModel();
-        //        String name, position, email, phone;
-
-        if(model.getRowCount()==0){
-            JOptionPane.showMessageDialog(this,"Stock is Empty");
+        if(itemNo.getText().equals("") || itemName.getText().equals("") || quantity.getText().equals("") || price.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Please enter all stocks");
         }else{
+            String data[] = {itemNo.getText(),itemName.getText(),quantity.getText(),price.getText()};
+            DefaultTableModel Model = (DefaultTableModel) AuthenticNepalistock.getModel();
+            Model.addRow(data);
+            
             try{
-                String ItemNo, ItemName, Quantity, Price;
+                String ItemNo,  ItemName, Quantity, Price;
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/project","root","asdfgzxcv123");
-                for(int i = 0; i<model.getRowCount();i++){
-                    ItemNo = model.getValueAt(i,0).toString();
-                    ItemName = model.getValueAt(i,1).toString();
-                    Quantity = model.getValueAt(i,2).toString();
-                    Price = model.getValueAt(i,3).toString();
+                for(int i = 0; i<Model.getRowCount();i++){
+                    ItemNo = Model.getValueAt(i,0).toString();
+                    ItemName = Model.getValueAt(i,1).toString();
+                    Quantity = Model.getValueAt(i,2).toString();
+                    Price = Model.getValueAt(i,3).toString();
 
                     String sql = "insert into authenticnepali(itemNo,itemName,quantity,price) values (?,?,?,?)";
                     pst = conn.prepareStatement(sql);
@@ -409,13 +385,13 @@ public class AuthenticNepali extends javax.swing.JFrame {
                 }
 
                     JOptionPane.showMessageDialog(this,"Stocks insert successfully!!");
-                model.setRowCount(0);
+                Model.setRowCount(0);
             }catch(Exception e){
             }
         }
 
        
-    }//GEN-LAST:event_savedataActionPerformed
+    }//GEN-LAST:event_savedatabtnActionPerformed
 
     private void priceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_priceActionPerformed
         // TODO add your handling code here:
@@ -458,8 +434,8 @@ public class AuthenticNepali extends javax.swing.JFrame {
                 
                 Object[] obj = {itemNo, itemName, quantity, price};
                 
-                model = (DefaultTableModel)AuthenticNepali.getModel();
-                model.addRow(obj);
+                Model = (DefaultTableModel)AuthenticNepalistock.getModel();
+                Model.addRow(obj);
             }
             
             
@@ -478,9 +454,23 @@ public class AuthenticNepali extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    
+    public AuthenticNepaliModel getData(){
+        model = new AuthenticNepaliModel(itemNo.getText(), itemName.getText(), quantity.getText(), price.getText());
+        return model;
+
+        }
+        
+        public void setMessage(String msg){
+            JOptionPane.showMessageDialog(this, msg);
+        }
+    
+        public void saveAuthenticNepaliListner(ActionListener Save){
+        savedatabtn.addActionListener(Save);
+        }
+        
+        
+        
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -515,7 +505,7 @@ public class AuthenticNepali extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JTable AuthenticNepali;
+    public javax.swing.JTable AuthenticNepalistock;
     public javax.swing.JTable Drinks;
     private javax.swing.JLabel ItemName;
     private javax.swing.JLabel ItemNo;
@@ -523,7 +513,6 @@ public class AuthenticNepali extends javax.swing.JFrame {
     private javax.swing.JLabel Quantity;
     private javax.swing.JButton Show;
     private javax.swing.JButton Show1;
-    private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnDelete;
     private javax.swing.JTextField itemName;
     private javax.swing.JTextField itemNo;
@@ -534,7 +523,8 @@ public class AuthenticNepali extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTextField price;
     private javax.swing.JTextField quantity;
-    private javax.swing.JButton savedata;
+    private javax.swing.JButton savedatabtn;
     private javax.swing.JButton update;
     // End of variables declaration//GEN-END:variables
+
 }
