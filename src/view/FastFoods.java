@@ -4,12 +4,14 @@
  */
 package view;
 
+import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import model.FastFoodsModel;
 
 /**
  *
@@ -20,7 +22,7 @@ public class FastFoods extends javax.swing.JFrame {
 
     
      
-    DefaultTableModel model = null;
+    DefaultTableModel Model = null;
     public FastFoods() {
         initComponents();
         
@@ -46,11 +48,10 @@ public class FastFoods extends javax.swing.JFrame {
         itemName = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        btnAdd = new javax.swing.JButton();
         itemNo = new javax.swing.JTextField();
         btnDelete = new javax.swing.JButton();
         update = new javax.swing.JButton();
-        savedata = new javax.swing.JButton();
+        savedatabtn = new javax.swing.JButton();
         Show2 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
@@ -119,17 +120,6 @@ public class FastFoods extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel1.setText("Item No.");
 
-        btnAdd.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        btnAdd.setText("Add");
-        btnAdd.setBorderPainted(false);
-        btnAdd.setContentAreaFilled(false);
-        btnAdd.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnAdd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddActionPerformed(evt);
-            }
-        });
-
         itemNo.setBackground(new java.awt.Color(216, 246, 210));
         itemNo.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         itemNo.setAutoscrolls(false);
@@ -161,13 +151,13 @@ public class FastFoods extends javax.swing.JFrame {
             }
         });
 
-        savedata.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        savedata.setText("Save Data");
-        savedata.setBorderPainted(false);
-        savedata.setContentAreaFilled(false);
-        savedata.addActionListener(new java.awt.event.ActionListener() {
+        savedatabtn.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        savedatabtn.setText("Save Data");
+        savedatabtn.setBorderPainted(false);
+        savedatabtn.setContentAreaFilled(false);
+        savedatabtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                savedataActionPerformed(evt);
+                savedatabtnActionPerformed(evt);
             }
         });
 
@@ -190,10 +180,9 @@ public class FastFoods extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 5, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(11, 11, 11)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -211,13 +200,12 @@ public class FastFoods extends javax.swing.JFrame {
                                 .addComponent(price, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jButton2)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(69, 69, 69)
                         .addComponent(btnDelete)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(update)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(savedata)))
+                        .addComponent(savedatabtn)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Show2)
@@ -249,10 +237,9 @@ public class FastFoods extends javax.swing.JFrame {
                             .addComponent(price, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(36, 36, 36)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnAdd)
                             .addComponent(btnDelete)
                             .addComponent(update)
-                            .addComponent(savedata)))
+                            .addComponent(savedatabtn)))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(Show2)
@@ -285,33 +272,16 @@ public class FastFoods extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_itemNameActionPerformed
 
-    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        // TODO add your handling code here:
-        if(itemNo.getText().equals("") || itemName.getText().equals("") || quantity.getText().equals("") || price.getText().equals("")){
-            JOptionPane.showMessageDialog(this, "Please enter all stocks");
-        }else{
-            String data[] = {itemNo.getText(),itemName.getText(),quantity.getText(),price.getText()};
-            DefaultTableModel model = (DefaultTableModel) fastfoods.getModel();
-            model.addRow(data);
-            JOptionPane.showMessageDialog(this, "Stock added auccessfully!!");
-        }
-
-        itemNo.setText("");
-        itemName.setText("");
-        quantity.setText("");
-        price.setText("");
-    }//GEN-LAST:event_btnAddActionPerformed
-
     private void itemNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemNoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_itemNoActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
-        DefaultTableModel model = (DefaultTableModel) fastfoods.getModel();
+        DefaultTableModel Model = (DefaultTableModel) fastfoods.getModel();
 
         if(fastfoods.getSelectedRowCount() ==1){
-            model.removeRow(fastfoods.getSelectedRow());
+            Model.removeRow(fastfoods.getSelectedRow());
         }else{
             if(fastfoods.getRowCount()==0){
                 JOptionPane.showMessageDialog(this, "Stock is empty!!");
@@ -324,17 +294,17 @@ public class FastFoods extends javax.swing.JFrame {
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
         // TODO add your handling code here:
 
-        DefaultTableModel model = (DefaultTableModel) fastfoods.getModel();
+        DefaultTableModel Model = (DefaultTableModel) fastfoods.getModel();
         if(fastfoods.getSelectedRowCount()==1){
             String ItemNo = itemNo.getText();
             String ItemName = itemName.getText();
             String Quantity = quantity.getText();
             String Price = price.getText();
 
-            model.setValueAt(ItemNo,fastfoods.getSelectedRow(),0);
-            model.setValueAt(ItemName,fastfoods.getSelectedRow(),1);
-            model.setValueAt(Quantity,fastfoods.getSelectedRow(),2);
-            model.setValueAt(Price,fastfoods.getSelectedRow(),3);
+            Model.setValueAt(ItemNo,fastfoods.getSelectedRow(),0);
+            Model.setValueAt(ItemName,fastfoods.getSelectedRow(),1);
+            Model.setValueAt(Quantity,fastfoods.getSelectedRow(),2);
+            Model.setValueAt(Price,fastfoods.getSelectedRow(),3);
 
             JOptionPane.showMessageDialog(this, "Update Successfully!!");
         }else{
@@ -346,23 +316,28 @@ public class FastFoods extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_updateActionPerformed
 
-    private void savedataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_savedataActionPerformed
-        // TODO add your handling code here:
-        DefaultTableModel model = (DefaultTableModel) fastfoods.getModel();
-        //        String name, position, email, phone;
+    private void savedatabtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_savedatabtnActionPerformed
+       if(itemNo.getText().equals("") || itemName.getText().equals("") || quantity.getText().equals("") || price.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Please enter all stocks");
+        }else{
+            String data[] = {itemNo.getText(),itemName.getText(),quantity.getText(),price.getText()};
+            DefaultTableModel Model = (DefaultTableModel) fastfoods.getModel();
+            Model.addRow(data);
+            JOptionPane.showMessageDialog(this, "Stock added auccessfully!!");
+        }
 
-        if(model.getRowCount()==0){
+        if(Model.getRowCount()==0){
             JOptionPane.showMessageDialog(this,"Stock is Empty");
         }else{
             try{
                 String ItemNo, ItemName, Quantity, Price;
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/project","root","asdfgzxcv123");
-                for(int i = 0; i<model.getRowCount();i++){
-                    ItemNo = model.getValueAt(i,0).toString();
-                    ItemName = model.getValueAt(i,1).toString();
-                    Quantity = model.getValueAt(i,2).toString();
-                    Price = model.getValueAt(i,3).toString();
+                for(int i = 0; i<Model.getRowCount();i++){
+                    ItemNo = Model.getValueAt(i,0).toString();
+                    ItemName = Model.getValueAt(i,1).toString();
+                    Quantity = Model.getValueAt(i,2).toString();
+                    Price = Model.getValueAt(i,3).toString();
 
                     String sql = "insert into fastfoods(itemNo,itemName,quantity,price) values (?,?,?,?)";
                     pst = conn.prepareStatement(sql);
@@ -376,13 +351,13 @@ public class FastFoods extends javax.swing.JFrame {
                 }
 
                 JOptionPane.showMessageDialog(this,"Stocks insert successfully!!");
-                model.setRowCount(0);
+                Model.setRowCount(0);
             }catch(Exception e){
             }
         }
 
        
-    }//GEN-LAST:event_savedataActionPerformed
+    }//GEN-LAST:event_savedatabtnActionPerformed
 
     private void Show2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Show2ActionPerformed
         // TODO add your handling code here:
@@ -404,8 +379,8 @@ public class FastFoods extends javax.swing.JFrame {
                 
                 Object[] obj = {itemNo, itemName, quantity, price};
                 
-                model = (DefaultTableModel)fastfoods.getModel();
-                model.addRow(obj);
+                Model = (DefaultTableModel)fastfoods.getModel();
+                Model.addRow(obj);
             }
             
             
@@ -422,9 +397,25 @@ public class FastFoods extends javax.swing.JFrame {
         new Inventory().setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    public FastFoodsModel getData(){
+        FastFoodsModel model = new FastFoodsModel(itemNo.getText(), itemName.getText(), quantity.getText(), price.getText());
+        return model;
+
+        }
+        
+        public void setMessage(String msg){
+            JOptionPane.showMessageDialog(this, msg);
+        }
+    
+        public void saveFastFoodsListner(ActionListener Save){
+        savedatabtn.addActionListener(Save);
+        }
+    
+    
+    
+    
+    
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -460,7 +451,6 @@ public class FastFoods extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Show2;
-    private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnDelete;
     public javax.swing.JTable fastfoods;
     private javax.swing.JTextField itemName;
@@ -475,7 +465,7 @@ public class FastFoods extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField price;
     private javax.swing.JTextField quantity;
-    private javax.swing.JButton savedata;
+    private javax.swing.JButton savedatabtn;
     private javax.swing.JButton update;
     // End of variables declaration//GEN-END:variables
 }

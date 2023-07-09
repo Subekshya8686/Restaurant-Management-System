@@ -4,12 +4,14 @@
  */
 package view;
 
+import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import model.SoupsModel;
 
 /**
  *S
@@ -23,7 +25,7 @@ public class Soups extends javax.swing.JFrame {
 
     
      
-    DefaultTableModel model = null;
+    DefaultTableModel Model = null;
 
     /**
      * Creates new form Soups
@@ -53,11 +55,10 @@ public class Soups extends javax.swing.JFrame {
         itemName = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        btnAdd = new javax.swing.JButton();
         itemNo = new javax.swing.JTextField();
         btnDelete = new javax.swing.JButton();
         update = new javax.swing.JButton();
-        savedata = new javax.swing.JButton();
+        savedatabtn = new javax.swing.JButton();
         Show2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
 
@@ -123,17 +124,6 @@ public class Soups extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel1.setText("Item No.");
 
-        btnAdd.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        btnAdd.setText("Add");
-        btnAdd.setBorderPainted(false);
-        btnAdd.setContentAreaFilled(false);
-        btnAdd.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnAdd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddActionPerformed(evt);
-            }
-        });
-
         itemNo.setBackground(new java.awt.Color(169, 214, 229));
         itemNo.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         itemNo.setAutoscrolls(false);
@@ -165,13 +155,13 @@ public class Soups extends javax.swing.JFrame {
             }
         });
 
-        savedata.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        savedata.setText("Save Data");
-        savedata.setBorderPainted(false);
-        savedata.setContentAreaFilled(false);
-        savedata.addActionListener(new java.awt.event.ActionListener() {
+        savedatabtn.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        savedatabtn.setText("Save Data");
+        savedatabtn.setBorderPainted(false);
+        savedatabtn.setContentAreaFilled(false);
+        savedatabtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                savedataActionPerformed(evt);
+                savedatabtnActionPerformed(evt);
             }
         });
 
@@ -197,10 +187,9 @@ public class Soups extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 5, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -217,13 +206,12 @@ public class Soups extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(price, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnDelete)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(update)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(savedata)))
+                                .addComponent(savedatabtn)))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -259,10 +247,9 @@ public class Soups extends javax.swing.JFrame {
                             .addComponent(price, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(36, 36, 36)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnAdd)
                             .addComponent(btnDelete)
                             .addComponent(update)
-                            .addComponent(savedata))))
+                            .addComponent(savedatabtn))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Show2)
                 .addContainerGap(32, Short.MAX_VALUE))
@@ -282,96 +269,65 @@ public class Soups extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void priceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_priceActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_priceActionPerformed
+        setVisible(false);
+        new Inventory().setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void quantityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quantityActionPerformed
+    private void Show2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Show2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_quantityActionPerformed
+        setSoupsStock();
+        }
 
-    private void itemNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_itemNameActionPerformed
+        public void setSoupsStock(){
 
-    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+            try{
+                Class.forName("com.mysql.cj.jdbc.Driver");
+                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project","root","asdfgzxcv123");
+                PreparedStatement pst = con.prepareStatement("select * from soups");
+                ResultSet rs = pst.executeQuery();
+
+                while(rs.next()){
+                    String itemNo = rs.getString("itemN0");
+                    String itemName = rs.getString("itemName");
+                    String price = rs.getString("price");
+                    String quantity = rs.getString("Quantity");
+
+                    Object[] obj = {itemNo, itemName, quantity, price};
+
+                    Model = (DefaultTableModel)Soups.getModel();
+                    Model.addRow(obj);
+                }
+
+            }catch(Exception e){
+                e.printStackTrace();
+
+            }
+    }//GEN-LAST:event_Show2ActionPerformed
+
+    private void savedatabtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_savedatabtnActionPerformed
         // TODO add your handling code here:
         if(itemNo.getText().equals("") || itemName.getText().equals("") || quantity.getText().equals("") || price.getText().equals("")){
             JOptionPane.showMessageDialog(this, "Please enter all stocks");
         }else{
             String data[] = {itemNo.getText(),itemName.getText(),quantity.getText(),price.getText()};
-            DefaultTableModel model = (DefaultTableModel) Soups.getModel();
-            model.addRow(data);
+            DefaultTableModel Model = (DefaultTableModel) Soups.getModel();
+            Model.addRow(data);
             JOptionPane.showMessageDialog(this, "Stock added auccessfully!!");
         }
-
-        itemNo.setText("");
-        itemName.setText("");
-        quantity.setText("");
-        price.setText("");
-    }//GEN-LAST:event_btnAddActionPerformed
-
-    private void itemNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemNoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_itemNoActionPerformed
-
-    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        // TODO add your handling code here:
-        DefaultTableModel model = (DefaultTableModel) Soups.getModel();
-
-        if(Soups.getSelectedRowCount() ==1){
-            model.removeRow(Soups.getSelectedRow());
-        }else{
-            if(Soups.getRowCount()==0){
-                JOptionPane.showMessageDialog(this, "Stock is empty!!");
-            }else{
-                JOptionPane.showMessageDialog(this, "Please select Single row for deletion");
-            }
-        }
-    }//GEN-LAST:event_btnDeleteActionPerformed
-
-    private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
-        // TODO add your handling code here:
-
-        DefaultTableModel model = (DefaultTableModel) Soups.getModel();
-        if(Soups.getSelectedRowCount()==1){
-            String ItemNo = itemNo.getText();
-            String ItemName = itemName.getText();
-            String Quantity = quantity.getText();
-            String Price = price.getText();
-
-            model.setValueAt(ItemNo,Soups.getSelectedRow(),0);
-            model.setValueAt(ItemName,Soups.getSelectedRow(),1);
-            model.setValueAt(Quantity,Soups.getSelectedRow(),2);
-            model.setValueAt(Price,Soups.getSelectedRow(),3);
-
-            JOptionPane.showMessageDialog(this, "Update Successfully!!");
-        }else{
-            if(Soups.getRowCount()==0){
-                JOptionPane.showMessageDialog(this, "Sotck is empty!!");
-            }else{
-                JOptionPane.showMessageDialog(this, "Please select single row for update!!");
-            }
-        }
-    }//GEN-LAST:event_updateActionPerformed
-
-    private void savedataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_savedataActionPerformed
-        // TODO add your handling code here:
-        DefaultTableModel model = (DefaultTableModel) Soups.getModel();
-        //        String name, position, email, phone;
-
-        if(model.getRowCount()==0){
+        if(Model.getRowCount()==0){
             JOptionPane.showMessageDialog(this,"Stock is Empty");
         }else{
             try{
                 String ItemNo, ItemName, Quantity, Price;
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/project","root","asdfgzxcv123");
-                for(int i = 0; i<model.getRowCount();i++){
-                    ItemNo = model.getValueAt(i,0).toString();
-                    ItemName = model.getValueAt(i,1).toString();
-                    Quantity = model.getValueAt(i,2).toString();
-                    Price = model.getValueAt(i,3).toString();
+                for(int i = 0; i<Model.getRowCount();i++){
+                    ItemNo = Model.getValueAt(i,0).toString();
+                    ItemName = Model.getValueAt(i,1).toString();
+                    Quantity = Model.getValueAt(i,2).toString();
+                    Price = Model.getValueAt(i,3).toString();
 
                     String sql = "insert into soups(itemNo,itemName,quantity,price) values (?,?,?,?)";
                     pst = conn.prepareStatement(sql);
@@ -385,56 +341,88 @@ public class Soups extends javax.swing.JFrame {
                 }
 
                 JOptionPane.showMessageDialog(this,"Stocks insert successfully!!");
-                model.setRowCount(0);
+                Model.setRowCount(0);
             }catch(Exception e){
             }
         }
 
-       
-    }//GEN-LAST:event_savedataActionPerformed
+    }//GEN-LAST:event_savedatabtnActionPerformed
 
-    private void Show2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Show2ActionPerformed
+    private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
         // TODO add your handling code here:
-       setSoupsStock();
-    }
-    
-    public void setSoupsStock(){
-        
-        try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project","root","asdfgzxcv123");
-            PreparedStatement pst = con.prepareStatement("select * from soups");
-            ResultSet rs = pst.executeQuery();
-            
-            while(rs.next()){
-                String itemNo = rs.getString("itemN0");
-                String itemName = rs.getString("itemName");
-                String price = rs.getString("price");
-                String quantity = rs.getString("Quantity");
-                
-                Object[] obj = {itemNo, itemName, quantity, price};
-                
-                model = (DefaultTableModel)Soups.getModel();
-                model.addRow(obj);
+
+        DefaultTableModel Model = (DefaultTableModel) Soups.getModel();
+        if(Soups.getSelectedRowCount()==1){
+            String ItemNo = itemNo.getText();
+            String ItemName = itemName.getText();
+            String Quantity = quantity.getText();
+            String Price = price.getText();
+
+            Model.setValueAt(ItemNo,Soups.getSelectedRow(),0);
+            Model.setValueAt(ItemName,Soups.getSelectedRow(),1);
+            Model.setValueAt(Quantity,Soups.getSelectedRow(),2);
+            Model.setValueAt(Price,Soups.getSelectedRow(),3);
+
+            JOptionPane.showMessageDialog(this, "Update Successfully!!");
+        }else{
+            if(Soups.getRowCount()==0){
+                JOptionPane.showMessageDialog(this, "Sotck is empty!!");
+            }else{
+                JOptionPane.showMessageDialog(this, "Please select single row for update!!");
             }
-            
-            
-            
-        }catch(Exception e){
-            e.printStackTrace();
-            
         }
-    }//GEN-LAST:event_Show2ActionPerformed
+    }//GEN-LAST:event_updateActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
-        setVisible(false);
-        new Inventory().setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+        DefaultTableModel Model = (DefaultTableModel) Soups.getModel();
 
-    /**
-     * @param args the command line arguments
-     */
+        if(Soups.getSelectedRowCount() ==1){
+            Model.removeRow(Soups.getSelectedRow());
+        }else{
+            if(Soups.getRowCount()==0){
+                JOptionPane.showMessageDialog(this, "Stock is empty!!");
+            }else{
+                JOptionPane.showMessageDialog(this, "Please select Single row for deletion");
+            }
+        }
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void itemNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemNoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_itemNoActionPerformed
+
+    private void itemNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_itemNameActionPerformed
+
+    private void quantityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quantityActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_quantityActionPerformed
+
+    private void priceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_priceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_priceActionPerformed
+
+    public SoupsModel getData(){
+        SoupsModel model = new SoupsModel(itemNo.getText(), itemName.getText(), quantity.getText(), price.getText());
+        return model;
+
+        }
+        
+        public void setMessage(String msg){
+            JOptionPane.showMessageDialog(this, msg);
+        }
+    
+        public void saveSoupsListner(ActionListener Save){
+        savedatabtn.addActionListener(Save);
+        }
+    
+    
+    
+    
+    
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -470,8 +458,7 @@ public class Soups extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Show2;
-    public javax.swing.JTable Soups;
-    private javax.swing.JButton btnAdd;
+    private javax.swing.JTable Soups;
     private javax.swing.JButton btnDelete;
     private javax.swing.JTextField itemName;
     private javax.swing.JTextField itemNo;
@@ -484,7 +471,7 @@ public class Soups extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTextField price;
     private javax.swing.JTextField quantity;
-    private javax.swing.JButton savedata;
+    private javax.swing.JButton savedatabtn;
     private javax.swing.JButton update;
     // End of variables declaration//GEN-END:variables
 }

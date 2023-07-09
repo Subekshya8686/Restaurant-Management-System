@@ -8,7 +8,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 import java.sql.*; 
-import java.util.Vector;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import model.*;
@@ -29,7 +28,7 @@ public class AuthenticNepaliController {
         view.saveAuthenticNepaliListner(Save);
     }
     
-    public void addButtonClicked(String itemNo, String itemName, String quantity, String price, Vector<?> data, JTable AuthenticNepalistock) {
+    public void addButtonClicked(String itemNo, String itemName, String quantity, String price, JTable AuthenticNepalistock) {
             try{
                 model = view.getData();
                 
