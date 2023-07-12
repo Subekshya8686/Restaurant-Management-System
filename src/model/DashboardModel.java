@@ -9,11 +9,21 @@ package model;
  * @author Nishant
  */
 public class DashboardModel {
-    double tax, total;
-        public DashboardModel(double tax, double total){
+    double tax, total, amount;
+
+    public DashboardModel(double tax, double total, double amount){
         this.tax= tax;
+        this.amount = amount;
         this.total= total;
     }
+    public double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
+
 
     public double getTax() {
         return tax;

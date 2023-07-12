@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package view;
 
 
@@ -12,11 +9,12 @@ import java.util.GregorianCalendar;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import model.*;
-/**
- *
- * @author Nishant
- */
+
+
+
 public class NewDashboard extends javax.swing.JFrame {
+    
+    DashboardModel model;
     /**
      * Creates new form NewDashboard
      */
@@ -28,7 +26,7 @@ public class NewDashboard extends javax.swing.JFrame {
         initComponents();   
         currentDate();
         
-        
+      
     }
     
      public void currentDate()
@@ -40,7 +38,7 @@ public class NewDashboard extends javax.swing.JFrame {
         date_txt.setText(year+"/"+(month+1)+"/"+day);
     }
     public void init(){
-//        setImage();
+        setImage();
     }
     
     
@@ -56,9 +54,9 @@ public class NewDashboard extends javax.swing.JFrame {
             jSpinnerdrinks.setValue(0);
             jSpinnercoffee.setValue(0);
             jSpinnericecream.setValue(0);
-            jTextFieldTax.setText("0.0");
-            jTextFieldAmount.setText("0.0");
-            jTextFieldTotalamount.setText("0.0"); 
+            txtTax.setText("0.0");
+            txtAmount.setText("0.0");
+            txtTotal.setText("0.0"); 
             momoCheck.setSelected(false);
             pizzaCheck.setSelected(false);
             burgerCheck.setSelected(false);
@@ -83,78 +81,39 @@ public class NewDashboard extends javax.swing.JFrame {
   public void qty(){
       
   }
- public  void qtyIsZero(){
-         if(Integer.parseInt(jSpinnermomoqty.getValue().toString())==0){
-            JOptionPane.showMessageDialog(null,"Please increase the item quantity");
-        }
-        
-    }
-  public  void qtyIsZero2(){
-         if(Integer.parseInt(jSpinnerpizza.getValue().toString())==0){
-            JOptionPane.showMessageDialog(null,"Please increase the item quantity");
-        }
-        
-    }
-   public  void qtyIsZero3(){
-         if(Integer.parseInt(jSpinnerburger.getValue().toString())==0){
-            JOptionPane.showMessageDialog(null,"Please increase the item quantity");
-        }
-        
-    }
-   public  void qtyIsZero4(){
-         if(Integer.parseInt(jSpinnerthakali.getValue().toString())==0){
-            JOptionPane.showMessageDialog(null,"Please increase the item quantity");
-        }
-        
-    }
-   public  void qtyIsZero5(){
-         if(Integer.parseInt(jSpinnerchowmein.getValue().toString())==0){
-            JOptionPane.showMessageDialog(null,"Please increase the item quantity");
-        }
-        
-    }
-   public  void qtyIsZero6(){
-         if(Integer.parseInt(jSpinnersoup.getValue().toString())==0){
-            JOptionPane.showMessageDialog(null,"Please increase the item quantity");
-        }
-        
-    }
-    public  void qtyIsZero7(){
-         if(Integer.parseInt(jSpinnerdrinks.getValue().toString())==0){
-            JOptionPane.showMessageDialog(null,"Please increase the item quantity");
-        }
-        
-    }
-    public  void qtyIsZero8(){
-         if(Integer.parseInt(jSpinnercoffee.getValue().toString())==0){
-            JOptionPane.showMessageDialog(null,"Please increase the item quantity");
-        }
-        
-    }
-     public  void qtyIsZero9(){
-         if(Integer.parseInt(jSpinnericecream.getValue().toString())==0){
-            JOptionPane.showMessageDialog(null,"Please increase the item quantity");
-        }
-        
-    }
- 
-
+  
+   public void setImage() {
     
-//    public void setImage() {
-//    ImageIcon icon = new ImageIcon(getClass().getResource("/Images/Momo1.png"));
-//    Image img = icon.getImage().getScaledInstance(momoimage.getWidth(), momoimage.getHeight(), Image.SCALE_SMOOTH);
-//    momoimage.setIcon(new ImageIcon(img));
-//}
-
+    ImageIcon icon = new ImageIcon(getClass().getResource("\\Restaurant-Management-System\\src\\view\\icons"));
+    Image img = icon.getImage().getScaledInstance(imagemomo.getWidth(), imagemomo.getHeight(), Image.SCALE_SMOOTH);
+    imagemomo.setIcon(new ImageIcon(img));
+}
+   
     public void dudate(){
         System.out.println(getTax(tax));
         double taxAmount = getTax(tax);  
         String formattedTax = String.format("%.0f", taxAmount);  
         System.out.println(formattedTax);  // Output: 12 (without decimal value)
-        jTextFieldTax.setText(String.valueOf(formattedTax));
-        jTextFieldAmount.setText(String.valueOf(total));
-        jTextFieldTotalamount.setText(String.valueOf(total+getTax(tax)));
+        txtTax.setText(String.valueOf(formattedTax));
+        txtAmount.setText(String.valueOf(total));
+        txtTotal.setText(String.valueOf(total+getTax(tax)));
     }
+    
+    public double getTax(double t){
+        double taxrate = 0.13;
+        return total*taxrate;
+    } 
+    
+    public DashboardModel getTotal(){
+        double t=Double.parseDouble(txtTax.getText());
+        double amt = Double.parseDouble(txtAmount.getText());
+        double tot = Double.parseDouble(txtTotal.getText());
+        model = new DashboardModel(t,tot,amt);
+        return model;
+        }
+    
+    
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -170,7 +129,7 @@ public class NewDashboard extends javax.swing.JFrame {
         jpricemomo = new javax.swing.JLabel();
         jSpinnermomoqty = new javax.swing.JSpinner();
         momoCheck = new javax.swing.JCheckBox();
-        jLabel4 = new javax.swing.JLabel();
+        imagemomo = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jLabelpizza = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -179,7 +138,6 @@ public class NewDashboard extends javax.swing.JFrame {
         jpricepizza = new javax.swing.JLabel();
         jSpinnerpizza = new javax.swing.JSpinner();
         pizzaCheck = new javax.swing.JCheckBox();
-        jLabel2 = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         jLabelburger = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
@@ -245,9 +203,9 @@ public class NewDashboard extends javax.swing.JFrame {
         jLabel50 = new javax.swing.JLabel();
         jLabel51 = new javax.swing.JLabel();
         jLabel52 = new javax.swing.JLabel();
-        jTextFieldTax = new javax.swing.JTextField();
-        jTextFieldAmount = new javax.swing.JTextField();
-        jTextFieldTotalamount = new javax.swing.JTextField();
+        txtTax = new javax.swing.JTextField();
+        txtAmount = new javax.swing.JTextField();
+        txtTotal = new javax.swing.JTextField();
         btnTotal = new javax.swing.JButton();
         btnReset = new javax.swing.JButton();
         btnReceipt = new javax.swing.JButton();
@@ -287,8 +245,8 @@ public class NewDashboard extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Momo1.png"))); // NOI18N
+        imagemomo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        imagemomo.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"\\src\\view\\icons"));
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -317,13 +275,13 @@ public class NewDashboard extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(imagemomo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(imagemomo, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelmomo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -364,8 +322,6 @@ public class NewDashboard extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/Images/pizza.png"))); // NOI18N
-
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
@@ -373,31 +329,25 @@ public class NewDashboard extends javax.swing.JFrame {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(70, 70, 70)
+                        .addComponent(jLabelpizza))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel7Layout.createSequentialGroup()
-                                .addGap(70, 70, 70)
-                                .addComponent(jLabelpizza))
-                            .addGroup(jPanel7Layout.createSequentialGroup()
-                                .addGap(17, 17, 17)
-                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel11)
-                                    .addComponent(jLabel10)
-                                    .addComponent(jLabel12))
-                                .addGap(31, 31, 31)
-                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jpricepizza)
-                                    .addComponent(jSpinnerpizza, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(pizzaCheck))))
-                        .addGap(0, 23, Short.MAX_VALUE))
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel12))
+                        .addGap(31, 31, 31)
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jpricepizza)
+                            .addComponent(jSpinnerpizza, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(pizzaCheck))))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(106, 106, 106)
                 .addComponent(jLabelpizza)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -446,12 +396,12 @@ public class NewDashboard extends javax.swing.JFrame {
                     .addComponent(jLabel16)
                     .addComponent(jLabel15)
                     .addComponent(jLabel17))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jpriceburger, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jSpinnerburger, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(burgerCheck, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addGap(70, 70, 70)
                 .addComponent(jLabelburger)
@@ -986,27 +936,27 @@ public class NewDashboard extends javax.swing.JFrame {
         jLabel52.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         jLabel52.setText("Total amount:");
 
-        jTextFieldTax.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jTextFieldTax.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextFieldTax.addActionListener(new java.awt.event.ActionListener() {
+        txtTax.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        txtTax.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtTax.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldTaxActionPerformed(evt);
+                txtTaxActionPerformed(evt);
             }
         });
 
-        jTextFieldAmount.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jTextFieldAmount.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextFieldAmount.addActionListener(new java.awt.event.ActionListener() {
+        txtAmount.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        txtAmount.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtAmount.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldAmountActionPerformed(evt);
+                txtAmountActionPerformed(evt);
             }
         });
 
-        jTextFieldTotalamount.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jTextFieldTotalamount.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextFieldTotalamount.addActionListener(new java.awt.event.ActionListener() {
+        txtTotal.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        txtTotal.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtTotal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldTotalamountActionPerformed(evt);
+                txtTotalActionPerformed(evt);
             }
         });
 
@@ -1046,6 +996,8 @@ public class NewDashboard extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setBackground(new java.awt.Color(51, 153, 0));
+        jButton1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jButton1.setText("Confirm Order");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1061,90 +1013,84 @@ public class NewDashboard extends javax.swing.JFrame {
                 .addGap(15, 15, 15)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel49)
-                        .addGap(98, 98, 98))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(63, 63, 63)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(btnTotal)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnReset))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(18, 18, 18)
+                            .addComponent(btnTotal)
+                            .addGap(94, 94, 94)
+                            .addComponent(btnReceipt)
+                            .addGap(163, 163, 163)
+                            .addComponent(btnExit))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(226, 226, 226)
+                            .addComponent(jLabel49))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel51)
-                                .addComponent(jLabel52)
-                                .addComponent(jLabel50)))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnReceipt)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnExit))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(89, 89, 89)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextFieldTax)
-                                    .addComponent(jTextFieldAmount)))))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel52)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(txtTotal))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel51)
+                                            .addComponent(jLabel50))
+                                        .addGap(67, 67, 67)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtTax, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jButton1)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addComponent(date_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jLabel3))
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGap(90, 90, 90)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1)
-                        .addGap(30, 30, 30)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(date_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel3)))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(314, 314, 314)
-                        .addComponent(jTextFieldTotalamount)))
-                .addGap(185, 185, 185))
+                        .addGap(95, 95, 95)
+                        .addComponent(btnReset)))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(jLabel49)
-                        .addGap(24, 24, 24)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(date_txt)
-                            .addComponent(jLabel3))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButton1)
-                                .addGap(40, 40, 40)))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel50)
-                            .addComponent(jTextFieldTax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel51)
-                                .addGap(19, 19, 19)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel52)
-                                        .addGap(18, 18, 18)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(btnTotal)
-                                            .addComponent(btnReset)
-                                            .addComponent(btnReceipt)
-                                            .addComponent(btnExit)))
-                                    .addComponent(jTextFieldTotalamount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jTextFieldAmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(8, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(jLabel49)
+                .addGap(12, 12, 12)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(date_txt)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel50)
+                    .addComponent(txtTax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(6, 6, 6)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel51)
+                    .addComponent(txtAmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(7, 7, 7)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel52)
+                    .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnTotal)
+                    .addComponent(btnReceipt)
+                    .addComponent(btnExit))
+                .addGap(29, 29, 29)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnReset)
+                    .addComponent(jButton1))
+                .addGap(32, 32, 32))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -1153,303 +1099,293 @@ public class NewDashboard extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 190, Short.MAX_VALUE))
+                .addGap(0, 6, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 982, Short.MAX_VALUE))
+                .addGap(0, 1982, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
-    private void momoCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_momoCheckActionPerformed
-
-
-    }//GEN-LAST:event_momoCheckActionPerformed
-
-    private void pizzaCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pizzaCheckActionPerformed
-
-    }//GEN-LAST:event_pizzaCheckActionPerformed
-//    }
-    private void burgerCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_burgerCheckActionPerformed
-
-    }//GEN-LAST:event_burgerCheckActionPerformed
-
-    private void thakaliCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_thakaliCheckActionPerformed
-
-    }//GEN-LAST:event_thakaliCheckActionPerformed
-
-    private void chowmeinCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chowmeinCheckActionPerformed
-
-    }//GEN-LAST:event_chowmeinCheckActionPerformed
-
-    private void soupCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_soupCheckActionPerformed
-
-    }//GEN-LAST:event_soupCheckActionPerformed
-
-    private void drinksCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_drinksCheckActionPerformed
-
-    }//GEN-LAST:event_drinksCheckActionPerformed
-
-    private void coffeeCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_coffeeCheckActionPerformed
-
-    }//GEN-LAST:event_coffeeCheckActionPerformed
-
-    private void icecreamCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_icecreamCheckActionPerformed
-
-    }//GEN-LAST:event_icecreamCheckActionPerformed
-
-    private void jTextFieldAmountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldAmountActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldAmountActionPerformed
-
-    private void jTextFieldTotalamountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldTotalamountActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldTotalamountActionPerformed
-
-    private void btnTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTotalActionPerformed
-    if(total==0.0){
-        JOptionPane.showMessageDialog(null,"You havenot selected and time");
-    }else{
-        jTextAreaBill.setText(jTextAreaBill.getText()
-        +"Tax:          \t\t"+jTextFieldTax.getText()+"\n"
-        +"Amount:       \t\t"+jTextFieldAmount.getText()+"\n"
-        +"Total Amount:\t\t"+jTextFieldTotalamount.getText()+"\n"
-        );
-        btnTotal.setEnabled(false);
-    }
-    }//GEN-LAST:event_btnTotalActionPerformed
-    private double getTax(double t){
-        double taxrate = 0.13;
-        return total*taxrate;
-        
-    }
-    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
-        reset();
-    }//GEN-LAST:event_btnResetActionPerformed
-
-    private void btnReceiptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReceiptActionPerformed
-        try{
-            jTextAreaBill.print();
-        }catch(PrinterException ex){
-            
-        }
-    }//GEN-LAST:event_btnReceiptActionPerformed
-
-    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_btnExitActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-//      qtyIsZero();
-      
-      if(momoCheck.isSelected()){
-       int qty = Integer.parseInt(jSpinnermomoqty.getValue().toString());
-        boolean isQtyZero = false;
+        //      qtyIsZero();
 
-        
-        if (qty != 0) {
+    if(momoCheck.isSelected()){
+    int qty = Integer.parseInt(jSpinnermomoqty.getValue().toString());
+        boolean isQtyZero = false;
+            //
+            //
+    if (qty != 0) {
     x++;
-    if (x == 1){  
+    if (x == 1){
         coderscafe();
     }
-    
+                //
     double price = qty * 120.0;
     total +=price;
     getTax((double) total);
     jTextAreaBill.append("\n"+x + "\n"+"  Item Name: "+"\t" + jLabelmomo.getText() +"\n"+"  Price:"+"\t" + price +
-            "\n"+"  Quantity:"+"\t"+jSpinnermomoqty.getValue()+"\n");
-            dudate();
-}else{
-    
-    momoCheck.setSelected(true);
-}}
-      
-      //     qtyIsZero2();
-           if(pizzaCheck.isSelected()){
-        int qty = Integer.parseInt(jSpinnerpizza.getValue().toString());
-        boolean isQtyZero = false;
+                    "\n"+"  Quantity:"+"\t"+jSpinnermomoqty.getValue()+"\n");
+    dudate();
+    }else{
 
-//qtyIsZero2(); // Call the method with void return type
+        momoCheck.setSelected(true);
+    }}
 
-if (qty != 0) {
-    x++;
+ //     qtyIsZero2();
+    if(pizzaCheck.isSelected()){
+    int qty = Integer.parseInt(jSpinnerpizza.getValue().toString());
+     boolean isQtyZero = false;
+
+                //qtyIsZero2(); // Call the method with void return type
+
+    if (qty != 0) {
+         x++;
     if (x == 1) {
-            coderscafe();
-
-    }
+        coderscafe();
+}
     double price = qty * 350.0;
     total +=price;
     getTax((double) total);
     jTextAreaBill.append("\n"+x + "\n"+"  Item Name: "+"\t" + jLabelpizza.getText() +"\n"+"  Price:"+"\t" + price+
-            "\n"+"  Quantity:"+"\t"+jSpinnerpizza.getValue()+"\n");
-          dudate();  
-}else{
-          pizzaCheck.setSelected(false);
-    }}
+                        "\n"+"  Quantity:"+"\t"+jSpinnerpizza.getValue()+"\n");
+    dudate();
+    }else{
+    pizzaCheck.setSelected(false);
+}}
 
-//        qtyIsZero3();
-        if(burgerCheck.isSelected()){
-            int qty3 = Integer.parseInt(jSpinnerburger.getValue().toString());
-//      boolean isQtyZero = false;
+ //        qtyIsZero3();
+    if(burgerCheck.isSelected()){
+    int qty3 = Integer.parseInt(jSpinnerburger.getValue().toString());
+    boolean isQtyZero = false;
 
-
-if (qty3 != 0) {
+    if (qty3 != 0) {
     x++;
     if (x == 1) {
-         coderscafe();
-    }
-//    coderscafe();
+        coderscafe();
+ }
     double price = qty3 * 140.0;
     total +=price;
     getTax((double) total);
     jTextAreaBill.append("\n"+x + "\n"+"  Item Name: "+"\t" + jLabelburger.getText() +"\n"+"  Price:"+"\t" + price+
-            "\n"+"  Quantity:"+"\t"+jSpinnerburger.getValue()+"\n");
-    dudate(); 
-}else{
-          burgerCheck.setSelected(false);
-    }}
-
-//    qtyIsZero4();
-    if(thakaliCheck.isSelected()){
-        int qty4 = Integer.parseInt(jSpinnerthakali.getValue().toString());
-//boolean isQtyZero = false;
-
-if (qty4 != 0 ) {
-    x++;
-    if (x == 1) {
-        coderscafe();
-    }
-    
-    double price = qty4 * 600.0;
-    total +=price;
-    getTax((double) total);
-    jTextAreaBill.append("\n"+x + "\n"+"  Item Name: "+"\t" + jLabelthakali.getText() +"\n"+"  Price:"+"\t" + price+
-            "\n"+"  Quantity:"+"\t"+jSpinnerthakali.getValue()+"\n");
+                            "\n"+"  Quantity:"+"\t"+jSpinnerburger.getValue()+"\n");
     dudate();
 }else{
-          thakaliCheck.setSelected(false);
-    }}
+       burgerCheck.setSelected(false);
+}}
 
-//        qtyIsZero5();
-        if(chowmeinCheck.isSelected()){
-        int qty5 = Integer.parseInt(jSpinnerchowmein.getValue().toString());
-//boolean isQtyZero = false;
 
-if (qty5 != 0) {
-    x++;
+    //    qtyIsZero4();
+    if(thakaliCheck.isSelected()){
+    int qty4 = Integer.parseInt(jSpinnerthakali.getValue().toString());
+                        //boolean isQtyZero = false;
+
+    if (qty4 != 0 ) {
+     x++;
     if (x == 1) {
         coderscafe();
-    }
-    
-    
+}
+
+    double price = qty4 * 600.0;
+    total +=price;
+     getTax((double) total);
+    jTextAreaBill.append("\n"+x + "\n"+"  Item Name: "+"\t" + jLabelthakali.getText() +"\n"+"  Price:"+"\t" + price+
+                                "\n"+"  Quantity:"+"\t"+jSpinnerthakali.getValue()+"\n");
+    dudate();
+}else{
+    thakaliCheck.setSelected(false);
+    }}
+
+
+    //        qtyIsZero5();
+    if(chowmeinCheck.isSelected()){
+    int qty5 = Integer.parseInt(jSpinnerchowmein.getValue().toString());
+                            //boolean isQtyZero = false;
+
+    if (qty5 != 0) {
+     x++;
+    if (x == 1) {
+        coderscafe();
+}
+
     double price = qty5 * 100.0;
     total +=price;
     getTax((double) total);
-    jTextAreaBill.append("\n"+x + "\n"+"  Item Name: "+"\t" + jLabelchowmein.getText() +"\n"+"  Price:"+"\t" + price+
-            "\n"+"  Quantity:"+"\t"+jSpinnerchowmein.getValue()+"\n");  
+     jTextAreaBill.append("\n"+x + "\n"+"  Item Name: "+"\t" + jLabelchowmein.getText() +"\n"+"  Price:"+"\t" + price+
+                                    "\n"+"  Quantity:"+"\t"+jSpinnerchowmein.getValue()+"\n");
     dudate();
 }else{
-          chowmeinCheck.setSelected(false);
-    }}
-//    qtyIsZero6();
-    if(soupCheck.isSelected()){
-       int qty6 = Integer.parseInt(jSpinnersoup.getValue().toString());
-//boolean isQtyZero = false;
+    chowmeinCheck.setSelected(false);
+}}
 
-if (qty6 != 0) {
-    x++;
+    //    qtyIsZero6();
+    if(soupCheck.isSelected()){
+    int qty6 = Integer.parseInt(jSpinnersoup.getValue().toString());
+        //boolean isQtyZero = false;
+
+    if (qty6 != 0) {
+        x++;
     if (x == 1) {
-    }
+}
     coderscafe();
     double price = qty6 * 80.0;
     total +=price;
     getTax((double) total);
     jTextAreaBill.append("\n"+x + "\n"+"  Item Name: "+"\t" + jLabelsoup.getText() +"\n"+"  Price:"+"\t" + price+
-            "\n"+"  Quantity:"+"\t"+jSpinnersoup.getValue()+"\n");
+                                        "\n"+"  Quantity:"+"\t"+jSpinnersoup.getValue()+"\n");
     dudate();
 }else{
-          soupCheck.setSelected(false);
-    }   }
-    
-//    qtyIsZero7();
-    if(drinksCheck.isSelected()){
-         int qty7 = Integer.parseInt(jSpinnerdrinks.getValue().toString());
-//boolean isQtyZero = false;
+        soupCheck.setSelected(false);
+}   }
 
-if (qty7 != 0 ) {
-    x++;
+    
+ //    qtyIsZero7();
+    if(drinksCheck.isSelected()){
+    int qty7 = Integer.parseInt(jSpinnerdrinks.getValue().toString());
+                                    //boolean isQtyZero = false;
+
+     if (qty7 != 0 ) {
+     x++;
     if (x == 1) {
     }
-    
     coderscafe();
     double price = qty7 * 40.0;
     total +=price;
     getTax((double) total);
     jTextAreaBill.append("\n"+x + "\n"+"  Item Name: "+"\t" + jLabelcolddrinks.getText() +"\n"+"  Price:"+"\t" + price+
-            "\n"+"  Quantity:"+"\t"+jSpinnerdrinks.getValue()+"\n");
-    dudate();
-}else{
-          drinksCheck.setSelected(false);
-    }}
-    
-    
-//     qtyIsZero8();
-     if(coffeeCheck.isSelected()){
-        int qty8 = Integer.parseInt(jSpinnercoffee.getValue().toString());
-//boolean isQtyZero = false;
+                       "\n"+"  Quantity:"+"\t"+jSpinnerdrinks.getValue()+"\n");
+        dudate();
+     }else{                                        
+         drinksCheck.setSelected(false);
+}}
 
-if (qty8 != 0) {
-    x++;
-    if (x == 1) {
-        coderscafe();
-    }
-    
-    
+ //     qtyIsZero8();
+    if(coffeeCheck.isSelected()){
+    int qty8 = Integer.parseInt(jSpinnercoffee.getValue().toString());
+                                        //boolean isQtyZero = false;
+
+    if (qty8 != 0) {
+        x++;
+        if (x == 1) {
+            coderscafe();
+}
+
     double price = qty8 * 180.0;
     total +=price;
     getTax((double) total);
     jTextAreaBill.append("\n"+x + "\n"+"  Item Name: "+"\t" + jLabelcoffee.getText() +"\n"+"  Price:"+"\t" + price+
-            "\n"+"  Quantity:"+"\t"+jSpinnerdrinks.getValue()+"\n");
+                                                "\n"+"  Quantity:"+"\t"+jSpinnerdrinks.getValue()+"\n");
     dudate();
 }else{
-          coffeeCheck.setSelected(false);
-    }}
-     
-//      qtyIsZero9();
-      if(icecreamCheck.isSelected()){
-        int qty9 = Integer.parseInt(jSpinnericecream.getValue().toString());
-//boolean isQtyZero = false;
+        coffeeCheck.setSelected(false);
+}}
 
-if (qty9 != 0) {
-    x++;
+  //      qtyIsZero9();
+    if(icecreamCheck.isSelected()){
+    int qty9 = Integer.parseInt(jSpinnericecream.getValue().toString());
+                                            //boolean isQtyZero = false;
+    if (qty9 != 0) {
+        x++;
     if (x == 1) {
         coderscafe();
-    }
-    
-    
+}
+
     double price = qty9 * 100.0;
     total +=price;
     getTax((double)total);
     jTextAreaBill.append("\n"+x + "\n"+"  Item Name: "+"\t" + jLabelicecream.getText() +"\n"+"  Price:"+"\t" + price+
-            "\n"+"  Quantity:"+"\t"+jSpinnericecream.getValue()+"\n");
+                                                   "\n"+"  Quantity:"+"\t"+jSpinnericecream.getValue()+"\n");
     dudate();
 }else{
-          icecreamCheck.setSelected(false);
-    }}
+    icecreamCheck.setSelected(false);
+}}
     }//GEN-LAST:event_jButton1ActionPerformed
-    
-    
-    
-    private void jTextFieldTaxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldTaxActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_jTextFieldTaxActionPerformed
 
+    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_btnExitActionPerformed
+
+    private void btnReceiptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReceiptActionPerformed
+        try{
+            jTextAreaBill.print();
+        }catch(PrinterException ex){
+
+        }
+    }//GEN-LAST:event_btnReceiptActionPerformed
+
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+        reset();
+    }//GEN-LAST:event_btnResetActionPerformed
+
+    private void btnTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTotalActionPerformed
+        if(total==0.0){
+            JOptionPane.showMessageDialog(null,"You havenot selected and time");
+        }else{
+            jTextAreaBill.setText(jTextAreaBill.getText()
+                +"Tax:          \t\t"+txtTax.getText()+"\n"
+                +"Amount:       \t\t"+txtAmount.getText()+"\n"
+                +"Total Amount:\t\t"+txtTotal.getText()+"\n"
+            );
+            btnTotal.setEnabled(false);
+        }
+    }//GEN-LAST:event_btnTotalActionPerformed
+
+    private void txtTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTotalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTotalActionPerformed
+
+    private void txtAmountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAmountActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtAmountActionPerformed
+
+    private void txtTaxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTaxActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_txtTaxActionPerformed
+
+    private void icecreamCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_icecreamCheckActionPerformed
+
+    }//GEN-LAST:event_icecreamCheckActionPerformed
+
+    private void coffeeCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_coffeeCheckActionPerformed
+
+    }//GEN-LAST:event_coffeeCheckActionPerformed
+
+    private void drinksCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_drinksCheckActionPerformed
+
+    }//GEN-LAST:event_drinksCheckActionPerformed
+
+    private void soupCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_soupCheckActionPerformed
+
+    }//GEN-LAST:event_soupCheckActionPerformed
+
+    private void chowmeinCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chowmeinCheckActionPerformed
+
+    }//GEN-LAST:event_chowmeinCheckActionPerformed
+
+    private void thakaliCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_thakaliCheckActionPerformed
+
+    }//GEN-LAST:event_thakaliCheckActionPerformed
+
+    private void burgerCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_burgerCheckActionPerformed
+
+    }//GEN-LAST:event_burgerCheckActionPerformed
+
+    private void pizzaCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pizzaCheckActionPerformed
+
+    }//GEN-LAST:event_pizzaCheckActionPerformed
+
+    private void momoCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_momoCheckActionPerformed
+
+    }//GEN-LAST:event_momoCheckActionPerformed
+
+           
+    
+    
     
     
     
@@ -1500,6 +1436,7 @@ if (qty9 != 0) {
     private javax.swing.JLabel date_txt;
     private javax.swing.JCheckBox drinksCheck;
     private javax.swing.JCheckBox icecreamCheck;
+    private javax.swing.JLabel imagemomo;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -1508,7 +1445,6 @@ if (qty9 != 0) {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
@@ -1522,7 +1458,6 @@ if (qty9 != 0) {
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
@@ -1568,9 +1503,6 @@ if (qty9 != 0) {
     private javax.swing.JSpinner jSpinnersoup;
     private javax.swing.JSpinner jSpinnerthakali;
     private javax.swing.JTextArea jTextAreaBill;
-    private javax.swing.JTextField jTextFieldAmount;
-    private javax.swing.JTextField jTextFieldTax;
-    private javax.swing.JTextField jTextFieldTotalamount;
     private javax.swing.JLabel jpriceburger;
     private javax.swing.JLabel jpricechowmein;
     private javax.swing.JLabel jpricecoffee;
@@ -1584,5 +1516,8 @@ if (qty9 != 0) {
     private javax.swing.JCheckBox pizzaCheck;
     private javax.swing.JCheckBox soupCheck;
     private javax.swing.JCheckBox thakaliCheck;
+    private javax.swing.JTextField txtAmount;
+    private javax.swing.JTextField txtTax;
+    private javax.swing.JTextField txtTotal;
     // End of variables declaration//GEN-END:variables
 }
