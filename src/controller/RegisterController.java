@@ -30,7 +30,9 @@ public class RegisterController {
             try{
                 model= view.getUser();
                 if(checkUser(model)){
-                    view.setMessage("Registered Successfully");
+//                    view.setMessage("Registered Successfully");
+                        NewDashboard d = new NewDashboard();          
+                        d.setVisible(true);
                 }
             else{
                     view.setMessage("Invalid username or password");
@@ -42,7 +44,8 @@ public class RegisterController {
             
         }
         
-        public boolean checkUser(RegisterModel user) throws Exception{
+    }
+    public boolean checkUser(RegisterModel user) throws Exception{
             try{
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/rms","root","subekshya");
@@ -60,11 +63,11 @@ public class RegisterController {
                 pst.executeUpdate();
                 System.out.println("Data Inserted");
                 JOptionPane.showConfirmDialog(null, "Registered Successfully");
+                return true;
             }
             catch(Exception e){
                 System.out.println(e.getMessage());
             }
             return false;
         }
-    }
 }

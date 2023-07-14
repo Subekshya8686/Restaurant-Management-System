@@ -6,12 +6,18 @@ package view;
 import java.sql.*;
 import javax.swing.JOptionPane;
 
+import controller.ForgotPwdController;
+import model.ForgotPwdModel;
+import model.*;
+// import javax.swing.JTextField;
+
 /**
  *
  * @author Dell
  */
 public class ForgotPass extends javax.swing.JFrame {
-    
+    ForgotPwdController controller;
+    ForgotPwdModel model;
 
     /**
      * Creates new form ForgotPass
@@ -19,6 +25,20 @@ public class ForgotPass extends javax.swing.JFrame {
     public ForgotPass() {
         initComponents();
         
+    }
+
+    public ForgotPwdModel getUser() {
+        model=new ForgotPwdModel(Username.getText(), securityque.getText(), answer.getText(), newpass.getText());
+        return model;
+    }
+  
+      public void setMessage(String msg) {
+        JOptionPane.showMessageDialog(this, msg);
+    }
+      
+    
+    public void myreset(){
+        securityque.setText("");
     }
 
     /**
