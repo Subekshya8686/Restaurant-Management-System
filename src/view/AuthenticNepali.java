@@ -5,7 +5,6 @@
 package view;
 
 import java.awt.event.ActionListener;
-import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,6 +12,10 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.AuthenticNepaliModel;
 import controller.AuthenticNepaliController;
+import database.DbConnection;
+import java.sql.Connection;
+import java.sql.Statement;
+
 
 /**
  *
@@ -21,6 +24,8 @@ import controller.AuthenticNepaliController;
 public class AuthenticNepali extends javax.swing.JFrame {
     PreparedStatement pst = null;
     AuthenticNepaliModel model;
+    Statement stmt = null;
+    Connection conn = null;
     
      
     DefaultTableModel Model = null;
@@ -52,9 +57,9 @@ public class AuthenticNepali extends javax.swing.JFrame {
         Show = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        AuthenticNepalistock = new javax.swing.JTable();
+        AuthenticNepalitbl = new javax.swing.JTable();
         btnDelete = new javax.swing.JButton();
-        update = new javax.swing.JButton();
+        updatebtn = new javax.swing.JButton();
         savedatabtn = new javax.swing.JButton();
         price = new javax.swing.JTextField();
         Price = new javax.swing.JLabel();
@@ -62,9 +67,9 @@ public class AuthenticNepali extends javax.swing.JFrame {
         quantity = new javax.swing.JTextField();
         itemName = new javax.swing.JTextField();
         ItemName = new javax.swing.JLabel();
-        ItemNo = new javax.swing.JLabel();
+        itemno = new javax.swing.JLabel();
         itemNo = new javax.swing.JTextField();
-        Show1 = new javax.swing.JButton();
+        showbtn = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(131, 197, 190));
@@ -106,8 +111,8 @@ public class AuthenticNepali extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(131, 197, 190));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Authentic Nepali Stocks", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.BELOW_TOP, new java.awt.Font("Times New Roman", 3, 24))); // NOI18N
 
-        AuthenticNepalistock.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
-        AuthenticNepalistock.setModel(new javax.swing.table.DefaultTableModel(
+        AuthenticNepalitbl.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        AuthenticNepalitbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -115,10 +120,10 @@ public class AuthenticNepali extends javax.swing.JFrame {
                 "Item No.", "Item Name", "Quantity", "Price"
             }
         ));
-        AuthenticNepalistock.setColumnSelectionAllowed(true);
-        AuthenticNepalistock.setGridColor(new java.awt.Color(216, 246, 210));
-        AuthenticNepalistock.setOpaque(false);
-        jScrollPane4.setViewportView(AuthenticNepalistock);
+        AuthenticNepalitbl.setColumnSelectionAllowed(true);
+        AuthenticNepalitbl.setGridColor(new java.awt.Color(216, 246, 210));
+        AuthenticNepalitbl.setOpaque(false);
+        jScrollPane4.setViewportView(AuthenticNepalitbl);
 
         btnDelete.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         btnDelete.setText("Delete");
@@ -130,14 +135,14 @@ public class AuthenticNepali extends javax.swing.JFrame {
             }
         });
 
-        update.setBackground(new java.awt.Color(16, 101, 82));
-        update.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        update.setText("Update");
-        update.setContentAreaFilled(false);
-        update.setDefaultCapable(false);
-        update.addActionListener(new java.awt.event.ActionListener() {
+        updatebtn.setBackground(new java.awt.Color(16, 101, 82));
+        updatebtn.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        updatebtn.setText("Update");
+        updatebtn.setContentAreaFilled(false);
+        updatebtn.setDefaultCapable(false);
+        updatebtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                updateActionPerformed(evt);
+                updatebtnActionPerformed(evt);
             }
         });
 
@@ -192,8 +197,8 @@ public class AuthenticNepali extends javax.swing.JFrame {
         ItemName.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         ItemName.setText("Item Name");
 
-        ItemNo.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        ItemNo.setText("Item No.");
+        itemno.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        itemno.setText("Item No.");
 
         itemNo.setBackground(new java.awt.Color(131, 197, 190));
         itemNo.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
@@ -205,14 +210,14 @@ public class AuthenticNepali extends javax.swing.JFrame {
             }
         });
 
-        Show1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        Show1.setText("Show Stocks");
-        Show1.setBorderPainted(false);
-        Show1.setContentAreaFilled(false);
-        Show1.setCursor(new java.awt.Cursor(java.awt.Cursor.MOVE_CURSOR));
-        Show1.addActionListener(new java.awt.event.ActionListener() {
+        showbtn.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        showbtn.setText("Show Stocks");
+        showbtn.setBorderPainted(false);
+        showbtn.setContentAreaFilled(false);
+        showbtn.setCursor(new java.awt.Cursor(java.awt.Cursor.MOVE_CURSOR));
+        showbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Show1ActionPerformed(evt);
+                showbtnActionPerformed(evt);
             }
         });
 
@@ -238,7 +243,7 @@ public class AuthenticNepali extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(ItemNo)
+                                        .addComponent(itemno)
                                         .addComponent(ItemName)
                                         .addComponent(Quantity))
                                     .addGap(47, 47, 47)
@@ -253,11 +258,11 @@ public class AuthenticNepali extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(btnDelete)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(update)
+                                .addComponent(updatebtn)
                                 .addGap(18, 18, 18)
                                 .addComponent(savedatabtn)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Show1)))
+                                .addComponent(showbtn)))
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(29, 29, 29))))
@@ -272,7 +277,7 @@ public class AuthenticNepali extends javax.swing.JFrame {
                         .addGap(26, 26, 26)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(itemNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ItemNo))
+                            .addComponent(itemno))
                         .addGap(30, 30, 30)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(itemName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -288,9 +293,9 @@ public class AuthenticNepali extends javax.swing.JFrame {
                         .addGap(50, 50, 50)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnDelete)
-                            .addComponent(update)
+                            .addComponent(updatebtn)
                             .addComponent(savedatabtn)
-                            .addComponent(Show1)))
+                            .addComponent(showbtn)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -311,84 +316,139 @@ public class AuthenticNepali extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+        public void myreset(){
+        itemNo.setText("");
+        itemName.setText("");
+        quantity.setText("");
+        price.setText("");
+    }
+    
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
-        DefaultTableModel Model = (DefaultTableModel) AuthenticNepalistock.getModel();
+       DefaultTableModel Model = (DefaultTableModel) AuthenticNepalitbl.getModel();
 
-        if(AuthenticNepalistock.getSelectedRowCount() ==1){
-             Model.removeRow(AuthenticNepalistock.getSelectedRow());
-        }else{
-            if(AuthenticNepalistock.getRowCount()==0){
-                JOptionPane.showMessageDialog(this, "Stock is empty!!");
-            }else{
-                JOptionPane.showMessageDialog(this, "Please select Single row for deletion");
+        if (AuthenticNepalitbl.getSelectedRowCount() == 1) {
+            int selectedRow = AuthenticNepalitbl.getSelectedRow();
+            String itemNoToDelete = AuthenticNepalitbl.getValueAt(selectedRow, 0).toString(); // Assuming itemNo is in the first column
+
+            Model.removeRow(selectedRow);
+
+            try {
+                Class.forName("com.mysql.cj.jdbc.Driver");
+                Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "asdfgzxcv123");
+                Statement stmt = conn.createStatement();
+
+                String sql = "DELETE FROM authenticnepali WHERE itemNo = '" + itemNoToDelete + "'";
+                stmt.executeUpdate(sql);
+
+                JOptionPane.showMessageDialog(this, "Data Deleted", "Authentic Nepali", JOptionPane.INFORMATION_MESSAGE);
+                myreset();
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
             }
+        } else {
+            JOptionPane.showMessageDialog(this, "Please select a single row for deletion", "Error", JOptionPane.ERROR_MESSAGE);
         }
 
         
     }//GEN-LAST:event_btnDeleteActionPerformed
 
-    private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
+    private void updatebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatebtnActionPerformed
         // TODO add your handling code here:
+        DefaultTableModel Model = (DefaultTableModel) AuthenticNepalitbl.getModel();
+        int selectedRow = AuthenticNepalitbl.getSelectedRow();
+        
+        if (selectedRow == -1) {
+            if (AuthenticNepalitbl.getRowCount() == 0) {
+                JOptionPane.showMessageDialog(this, "Stock is empty!!");
+            } else {
+                JOptionPane.showMessageDialog(this, "Please select a row to update!!");
+            }
+        } else {
+            String itemNoValue = itemNo.getText();
+            String itemNameValue = itemName.getText();
+            String quantityValue = quantity.getText();
+            String priceValue = price.getText();
 
-        DefaultTableModel Model = (DefaultTableModel) AuthenticNepalistock.getModel();
-        if(AuthenticNepalistock.getSelectedRowCount()==1){
-            String ItemNo = itemNo.getText();
-            String ItemName = itemName.getText();
-            String Quantity = quantity.getText();
-            String Price = price.getText();
+            Model.setValueAt(itemNoValue, selectedRow, 0);
+            Model.setValueAt(itemNameValue, selectedRow, 1);
+            Model.setValueAt(quantityValue, selectedRow, 2);
+            Model.setValueAt(priceValue, selectedRow, 3);
+            
+            
+            
 
-            Model.setValueAt(ItemNo,AuthenticNepalistock.getSelectedRow(),0);
-            Model.setValueAt(ItemName,AuthenticNepalistock.getSelectedRow(),1);
-            Model.setValueAt(Quantity,AuthenticNepalistock.getSelectedRow(),2);
-            Model.setValueAt(Price,AuthenticNepalistock.getSelectedRow(),3);
+            try {
+                Class.forName("com.mysql.cj.jdbc.Driver");
+                Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "asdfgzxcv123");
 
-            JOptionPane.showMessageDialog(this, "Update Successfully!!");
-        }else{
-            if(AuthenticNepalistock.getRowCount()==0){
-                JOptionPane.showMessageDialog(this, "Sotck is empty!!");
-            }else{
-                JOptionPane.showMessageDialog(this, "Please select single row for update!!");
+                String sql = "UPDATE authenticnepali SET ItemNo=?, ItemName=?, Quantity=?, Price=? WHERE ItemNo=?";
+                PreparedStatement pst = conn.prepareStatement(sql);
+                pst.setString(1, itemNoValue);
+                pst.setString(2, itemNameValue);
+                pst.setString(3, quantityValue);
+                pst.setString(4, priceValue);
+                pst.setString(5, itemNoValue); // Assuming 'ItemNo' is the primary key column
+
+                pst.executeUpdate();
+                pst.close();
+                conn.close();
+
+                JOptionPane.showMessageDialog(this, "Update Successful!!");
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
 
-    }//GEN-LAST:event_updateActionPerformed
+
+    }//GEN-LAST:event_updatebtnActionPerformed
 
     private void savedatabtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_savedatabtnActionPerformed
         // TODO add your handling code here:
-        if(itemNo.getText().equals("") || itemName.getText().equals("") || quantity.getText().equals("") || price.getText().equals("")){
+        if (itemNo.getText().equals("") || itemName.getText().equals("") || quantity.getText().equals("") || price.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Please enter all stocks");
-        }else{
-            String data[] = {itemNo.getText(),itemName.getText(),quantity.getText(),price.getText()};
-            DefaultTableModel Model = (DefaultTableModel) AuthenticNepalistock.getModel();
+        } else {
+            String data[] = { itemNo.getText(), itemName.getText(), quantity.getText(), price.getText() };
+            DefaultTableModel Model = (DefaultTableModel) AuthenticNepalitbl.getModel();
             Model.addRow(data);
-            
-            try{
-                String ItemNo,  ItemName, Quantity, Price;
+            JOptionPane.showMessageDialog(this, "Stock added successfully!!");
+        }
+        if (AuthenticNepalitbl.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(this, "Stock is Empty");
+        } else {
+            try {
                 Class.forName("com.mysql.cj.jdbc.Driver");
-                Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/project","root","asdfgzxcv123");
-                for(int i = 0; i<Model.getRowCount();i++){
-                    ItemNo = Model.getValueAt(i,0).toString();
-                    ItemName = Model.getValueAt(i,1).toString();
-                    Quantity = Model.getValueAt(i,2).toString();
-                    Price = Model.getValueAt(i,3).toString();
+                Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "asdfgzxcv123");
 
-                    String sql = "insert into authenticnepali(itemNo,itemName,quantity,price) values (?,?,?,?)";
-                    pst = conn.prepareStatement(sql);
-                    pst.setString(1,ItemNo);
-                    pst.setString(2,ItemName);
-                    pst.setString(3,Quantity);
-                    pst.setString(4,Price);
+                String sql = "INSERT INTO authenticnepali (itemNo, itemName, quantity, price) VALUES (?, ?, ?, ?)";
+                PreparedStatement pst = conn.prepareStatement(sql);
 
-                    pst.execute();
+                for (int i = 0; i < AuthenticNepalitbl.getRowCount(); i++) {
+                    String itemNoValue = AuthenticNepalitbl.getValueAt(i, 0).toString();
+                    String itemNameValue = AuthenticNepalitbl.getValueAt(i, 1).toString();
+                    String quantityValue = AuthenticNepalitbl.getValueAt(i, 2).toString();
+                    String priceValue = AuthenticNepalitbl.getValueAt(i, 3).toString();
 
+                    pst.setString(1, itemNoValue);
+                    pst.setString(2, itemNameValue);
+                    pst.setString(3, quantityValue);
+                    pst.setString(4, priceValue);
+
+                    pst.executeUpdate();
                 }
 
-                    JOptionPane.showMessageDialog(this,"Stocks insert successfully!!");
-                Model.setRowCount(0);
-            }catch(Exception e){
+                pst.close();
+                conn.close();
+
+                JOptionPane.showMessageDialog(this, "Stocks inserted successfully!!");
+                DefaultTableModel Model = (DefaultTableModel) AuthenticNepalitbl.getModel();
+                Model.setRowCount(0); // Clear the table after successful insertion
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
+
 
        
     }//GEN-LAST:event_savedatabtnActionPerformed
@@ -413,7 +473,7 @@ public class AuthenticNepali extends javax.swing.JFrame {
         
     }//GEN-LAST:event_ShowActionPerformed
 
-    private void Show1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Show1ActionPerformed
+    private void showbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showbtnActionPerformed
         // TODO add your handling code here:
                 setAuthenticNepaliStock();
     }
@@ -434,7 +494,7 @@ public class AuthenticNepali extends javax.swing.JFrame {
                 
                 Object[] obj = {itemNo, itemName, quantity, price};
                 
-                Model = (DefaultTableModel)AuthenticNepalistock.getModel();
+                Model = (DefaultTableModel)AuthenticNepalitbl.getModel();
                 Model.addRow(obj);
             }
             
@@ -445,7 +505,7 @@ public class AuthenticNepali extends javax.swing.JFrame {
             
         }
         
-    }//GEN-LAST:event_Show1ActionPerformed
+    }//GEN-LAST:event_showbtnActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
@@ -467,6 +527,18 @@ public class AuthenticNepali extends javax.swing.JFrame {
     
         public void saveAuthenticNepaliListner(ActionListener Save){
         savedatabtn.addActionListener(Save);
+        }
+        
+        public void deleteAuthenticNepaliListner(ActionListener Delete){
+            btnDelete.addActionListener(Delete);
+        }
+        
+        public void updateAuthenticNepaliListner(ActionListener Update){
+            updatebtn.addActionListener(Update);
+        }
+        
+        public void showAuthenticNepaliListner(ActionListener Show){
+            showbtn.addActionListener(Show);
         }
         
         
@@ -505,17 +577,16 @@ public class AuthenticNepali extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JTable AuthenticNepalistock;
+    public javax.swing.JTable AuthenticNepalitbl;
     public javax.swing.JTable Drinks;
     private javax.swing.JLabel ItemName;
-    private javax.swing.JLabel ItemNo;
     private javax.swing.JLabel Price;
     private javax.swing.JLabel Quantity;
     private javax.swing.JButton Show;
-    private javax.swing.JButton Show1;
     private javax.swing.JButton btnDelete;
     private javax.swing.JTextField itemName;
     private javax.swing.JTextField itemNo;
+    private javax.swing.JLabel itemno;
     private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -524,7 +595,8 @@ public class AuthenticNepali extends javax.swing.JFrame {
     private javax.swing.JTextField price;
     private javax.swing.JTextField quantity;
     private javax.swing.JButton savedatabtn;
-    private javax.swing.JButton update;
+    private javax.swing.JButton showbtn;
+    private javax.swing.JButton updatebtn;
     // End of variables declaration//GEN-END:variables
 
 }

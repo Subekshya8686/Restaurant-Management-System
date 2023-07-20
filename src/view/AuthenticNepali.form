@@ -128,7 +128,7 @@
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Group type="102" alignment="1" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="ItemNo" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="itemno" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Component id="ItemName" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Component id="Quantity" min="-2" max="-2" attributes="0"/>
                                       </Group>
@@ -148,11 +148,11 @@
                               <Group type="102" attributes="0">
                                   <Component id="btnDelete" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="update" min="-2" max="-2" attributes="0"/>
+                                  <Component id="updatebtn" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                                   <Component id="savedatabtn" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="Show1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="showbtn" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -173,7 +173,7 @@
                           <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="itemNo" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="ItemNo" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="itemno" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -193,9 +193,9 @@
                           <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="btnDelete" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="update" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="updatebtn" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="savedatabtn" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="Show1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="showbtn" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -216,7 +216,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTable" name="AuthenticNepalistock">
+            <Component class="javax.swing.JTable" name="AuthenticNepalitbl">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Times New Roman" size="12" style="0"/>
@@ -260,7 +260,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDeleteActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="update">
+        <Component class="javax.swing.JButton" name="updatebtn">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="52" green="65" red="10" type="rgb"/>
@@ -273,7 +273,7 @@
             <Property name="defaultCapable" type="boolean" value="false"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="updateActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="updatebtnActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="savedatabtn">
@@ -382,7 +382,7 @@
             <Property name="text" type="java.lang.String" value="Item Name"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="ItemNo">
+        <Component class="javax.swing.JLabel" name="itemno">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Times New Roman" size="14" style="0"/>
@@ -411,7 +411,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemNoActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="Show1">
+        <Component class="javax.swing.JButton" name="showbtn">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Times New Roman" size="14" style="0"/>
@@ -424,7 +424,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Show1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="showbtnActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButton1">

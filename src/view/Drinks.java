@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.DrinksModel;
@@ -19,6 +20,9 @@ import model.DrinksModel;
  */
 public class Drinks extends javax.swing.JFrame {
     PreparedStatement pst = null;
+    DrinksModel model;
+    Statement stmt = null;
+    Connection conn = null;
 
     
      
@@ -50,7 +54,7 @@ public class Drinks extends javax.swing.JFrame {
         Show1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        Drinks = new javax.swing.JTable();
+        Drinkstbl = new javax.swing.JTable();
         price = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -60,9 +64,9 @@ public class Drinks extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         itemNo = new javax.swing.JTextField();
         btnDelete = new javax.swing.JButton();
-        update = new javax.swing.JButton();
+        updatebtn = new javax.swing.JButton();
         savedatabtn = new javax.swing.JButton();
-        Show2 = new javax.swing.JButton();
+        showbtn = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
 
         fastfoods.setFont(new java.awt.Font("Times New Roman", 3, 24)); // NOI18N
@@ -105,8 +109,8 @@ public class Drinks extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(221, 190, 169));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Drinks Stock", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.BELOW_TOP, new java.awt.Font("Times New Roman", 3, 24))); // NOI18N
 
-        Drinks.setFont(new java.awt.Font("Times New Roman", 3, 24)); // NOI18N
-        Drinks.setModel(new javax.swing.table.DefaultTableModel(
+        Drinkstbl.setFont(new java.awt.Font("Times New Roman", 3, 24)); // NOI18N
+        Drinkstbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -114,10 +118,10 @@ public class Drinks extends javax.swing.JFrame {
                 "Item No.", "Item Name", "Quantity", "Price"
             }
         ));
-        Drinks.setColumnSelectionAllowed(true);
-        Drinks.setGridColor(new java.awt.Color(216, 246, 210));
-        Drinks.setOpaque(false);
-        jScrollPane3.setViewportView(Drinks);
+        Drinkstbl.setColumnSelectionAllowed(true);
+        Drinkstbl.setGridColor(new java.awt.Color(216, 246, 210));
+        Drinkstbl.setOpaque(false);
+        jScrollPane3.setViewportView(Drinkstbl);
 
         price.setBackground(new java.awt.Color(221, 190, 169));
         price.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
@@ -182,14 +186,14 @@ public class Drinks extends javax.swing.JFrame {
             }
         });
 
-        update.setBackground(new java.awt.Color(16, 101, 82));
-        update.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        update.setText("Update");
-        update.setContentAreaFilled(false);
-        update.setDefaultCapable(false);
-        update.addActionListener(new java.awt.event.ActionListener() {
+        updatebtn.setBackground(new java.awt.Color(16, 101, 82));
+        updatebtn.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        updatebtn.setText("Update");
+        updatebtn.setContentAreaFilled(false);
+        updatebtn.setDefaultCapable(false);
+        updatebtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                updateActionPerformed(evt);
+                updatebtnActionPerformed(evt);
             }
         });
 
@@ -203,10 +207,10 @@ public class Drinks extends javax.swing.JFrame {
             }
         });
 
-        Show2.setText("Show Stocks");
-        Show2.addActionListener(new java.awt.event.ActionListener() {
+        showbtn.setText("Show Stocks");
+        showbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Show2ActionPerformed(evt);
+                showbtnActionPerformed(evt);
             }
         });
 
@@ -244,13 +248,13 @@ public class Drinks extends javax.swing.JFrame {
                         .addGap(63, 63, 63)
                         .addComponent(btnDelete)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(update)
+                        .addComponent(updatebtn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(savedatabtn)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(Show2)
+                        .addComponent(showbtn)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 497, Short.MAX_VALUE))
                 .addContainerGap())
@@ -284,11 +288,11 @@ public class Drinks extends javax.swing.JFrame {
                         .addGap(36, 36, 36)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnDelete)
-                            .addComponent(update)
+                            .addComponent(updatebtn)
                             .addComponent(savedatabtn)))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12)
-                .addComponent(Show2)
+                .addComponent(showbtn)
                 .addContainerGap(27, Short.MAX_VALUE))
         );
 
@@ -305,7 +309,12 @@ public class Drinks extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+public void myreset(){
+        itemNo.setText("");
+        itemName.setText("");
+        quantity.setText("");
+        price.setText("");
+    }
     private void priceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_priceActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_priceActionPerformed
@@ -324,79 +333,125 @@ public class Drinks extends javax.swing.JFrame {
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
-        DefaultTableModel Model = (DefaultTableModel) Drinks.getModel();
+       DefaultTableModel Model = (DefaultTableModel) Drinkstbl.getModel();
 
-        if(Drinks.getSelectedRowCount() ==1){
-            Model.removeRow(Drinks.getSelectedRow());
-        }else{
-            if(Drinks.getRowCount()==0){
-                JOptionPane.showMessageDialog(this, "Stock is empty!!");
-            }else{
-                JOptionPane.showMessageDialog(this, "Please select Single row for deletion");
+        if (Drinkstbl.getSelectedRowCount() == 1) {
+            int selectedRow = Drinkstbl.getSelectedRow();
+            String itemNoToDelete = Drinkstbl.getValueAt(selectedRow, 0).toString(); // Assuming itemNo is in the first column
+
+            Model.removeRow(selectedRow);
+
+            try {
+                Class.forName("com.mysql.cj.jdbc.Driver");
+                Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "asdfgzxcv123");
+                Statement stmt = conn.createStatement();
+
+                String sql = "DELETE FROM drinks WHERE itemNo = '" + itemNoToDelete + "'";
+                stmt.executeUpdate(sql);
+
+                JOptionPane.showMessageDialog(this, "Data Deleted", "Drinks", JOptionPane.INFORMATION_MESSAGE);
+                myreset();
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
             }
+        } else {
+            JOptionPane.showMessageDialog(this, "Please select a single row for deletion", "Error", JOptionPane.ERROR_MESSAGE);
         }
 
     }//GEN-LAST:event_btnDeleteActionPerformed
 
-    private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
+    private void updatebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatebtnActionPerformed
         // TODO add your handling code here:
 
-        DefaultTableModel Model = (DefaultTableModel) Drinks.getModel();
-        if(Drinks.getSelectedRowCount()==1){
-            String ItemNo = itemNo.getText();
-            String ItemName = itemName.getText();
-            String Quantity = quantity.getText();
-            String Price = price.getText();
+        DefaultTableModel Model = (DefaultTableModel) Drinkstbl.getModel();
+        int selectedRow = Drinkstbl.getSelectedRow();
+        
+        if (selectedRow == -1) {
+            if (Drinkstbl.getRowCount() == 0) {
+                JOptionPane.showMessageDialog(this, "Stock is empty!!");
+            } else {
+                JOptionPane.showMessageDialog(this, "Please select a row to update!!");
+            }
+        } else {
+            String itemNoValue = itemNo.getText();
+            String itemNameValue = itemName.getText();
+            String quantityValue = quantity.getText();
+            String priceValue = price.getText();
 
-            Model.setValueAt(ItemNo,Drinks.getSelectedRow(),0);
-            Model.setValueAt(ItemName,Drinks.getSelectedRow(),1);
-            Model.setValueAt(Quantity,Drinks.getSelectedRow(),2);
-            Model.setValueAt(Price,Drinks.getSelectedRow(),3);
+            Model.setValueAt(itemNoValue, selectedRow, 0);
+            Model.setValueAt(itemNameValue, selectedRow, 1);
+            Model.setValueAt(quantityValue, selectedRow, 2);
+            Model.setValueAt(priceValue, selectedRow, 3);
+            
+            
+            
 
-            JOptionPane.showMessageDialog(this, "Update Successfully!!");
-        }else{
-            if(Drinks.getRowCount()==0){
-                JOptionPane.showMessageDialog(this, "Sotck is empty!!");
-            }else{
-                JOptionPane.showMessageDialog(this, "Please select single row for update!!");
+            try {
+                Class.forName("com.mysql.cj.jdbc.Driver");
+                Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "asdfgzxcv123");
+
+                String sql = "UPDATE drinks SET ItemNo=?, ItemName=?, Quantity=?, Price=? WHERE ItemNo=?";
+                PreparedStatement pst = conn.prepareStatement(sql);
+                pst.setString(1, itemNoValue);
+                pst.setString(2, itemNameValue);
+                pst.setString(3, quantityValue);
+                pst.setString(4, priceValue);
+                pst.setString(5, itemNoValue); // Assuming 'ItemNo' is the primary key column
+
+                pst.executeUpdate();
+                pst.close();
+                conn.close();
+
+                JOptionPane.showMessageDialog(this, "Update Successful!!");
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
-    }//GEN-LAST:event_updateActionPerformed
+    }//GEN-LAST:event_updatebtnActionPerformed
 
     private void savedatabtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_savedatabtnActionPerformed
-        if(itemNo.getText().equals("") || itemName.getText().equals("") || quantity.getText().equals("") || price.getText().equals("")){
+        if (itemNo.getText().equals("") || itemName.getText().equals("") || quantity.getText().equals("") || price.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Please enter all stocks");
-        }else{
-            String data[] = {itemNo.getText(),itemName.getText(),quantity.getText(),price.getText()};
-            DefaultTableModel Model = (DefaultTableModel) Drinks.getModel();
+        } else {
+            String data[] = { itemNo.getText(), itemName.getText(), quantity.getText(), price.getText() };
+            DefaultTableModel Model = (DefaultTableModel) Drinkstbl.getModel();
             Model.addRow(data);
-            try{
-                String ItemNo, ItemName, Quantity, Price;
+            JOptionPane.showMessageDialog(this, "Stock added successfully!!");
+        }
+        if (Drinkstbl.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(this, "Stock is Empty");
+        } else {
+            try {
                 Class.forName("com.mysql.cj.jdbc.Driver");
-                Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/project","root","asdfgzxcv123");
-                for(int i = 0; i<Model.getRowCount();i++){
-                    ItemNo = Model.getValueAt(i,0).toString();
-                    ItemName = Model.getValueAt(i,1).toString();
-                    Quantity = Model.getValueAt(i,2).toString();
-                    Price = Model.getValueAt(i,3).toString();
+                Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "asdfgzxcv123");
 
-                    String sql = "insert into drinks(itemNo,itemName,quantity,price) values (?,?,?,?)";
-                    pst = conn.prepareStatement(sql);
-                    pst.setString(1,ItemNo);
-                    pst.setString(2,ItemName);
-                    pst.setString(3,Quantity);
-                    pst.setString(4,Price);
+                String sql = "INSERT INTO drinks (itemNo, itemName, quantity, price) VALUES (?, ?, ?, ?)";
+                PreparedStatement pst = conn.prepareStatement(sql);
 
-                    pst.execute();
+                for (int i = 0; i < Drinkstbl.getRowCount(); i++) {
+                    String itemNoValue = Drinkstbl.getValueAt(i, 0).toString();
+                    String itemNameValue = Drinkstbl.getValueAt(i, 1).toString();
+                    String quantityValue = Drinkstbl.getValueAt(i, 2).toString();
+                    String priceValue = Drinkstbl.getValueAt(i, 3).toString();
 
+                    pst.setString(1, itemNoValue);
+                    pst.setString(2, itemNameValue);
+                    pst.setString(3, quantityValue);
+                    pst.setString(4, priceValue);
+
+                    pst.executeUpdate();
                 }
 
-                JOptionPane.showMessageDialog(this,"Stocks insert successfully!!");
-                Model.setRowCount(0);
-            }catch(Exception e){
+                pst.close();
+                conn.close();
+
+                JOptionPane.showMessageDialog(this, "Stocks inserted successfully!!");
+                DefaultTableModel Model = (DefaultTableModel) Drinkstbl.getModel();
+                Model.setRowCount(0); // Clear the table after successful insertion
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
-
        
     }//GEN-LAST:event_savedatabtnActionPerformed
 
@@ -421,7 +476,7 @@ public class Drinks extends javax.swing.JFrame {
                 
                 Object[] obj = {itemNo, itemName, quantity, price};
                 
-                Model = (DefaultTableModel)Drinks.getModel();
+                Model = (DefaultTableModel)Drinkstbl.getModel();
                 Model.addRow(obj);
             }
             
@@ -431,11 +486,11 @@ public class Drinks extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_Show1ActionPerformed
 
-    private void Show2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Show2ActionPerformed
+    private void showbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showbtnActionPerformed
         // TODO add your handling code here:
         
 
-    }//GEN-LAST:event_Show2ActionPerformed
+    }//GEN-LAST:event_showbtnActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
@@ -456,6 +511,20 @@ public class Drinks extends javax.swing.JFrame {
         public void saveDrinksListner(ActionListener Save){
         savedatabtn.addActionListener(Save);
         }
+        
+        public void deleteDrinksListner(ActionListener Delete){
+            btnDelete.addActionListener(Delete);
+        }
+        
+        public void updateDrinksListner(ActionListener Update){
+            updatebtn.addActionListener(Update);
+        }
+        
+        public void showDrinksListner(ActionListener Show){
+            showbtn.addActionListener(Show);
+        }
+        
+        
     
     
     public static void main(String args[]) {
@@ -492,9 +561,8 @@ public class Drinks extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JTable Drinks;
+    public javax.swing.JTable Drinkstbl;
     private javax.swing.JButton Show1;
-    private javax.swing.JButton Show2;
     private javax.swing.JButton btnDelete;
     public javax.swing.JTable fastfoods;
     public javax.swing.JTable fastfoods1;
@@ -512,6 +580,7 @@ public class Drinks extends javax.swing.JFrame {
     private javax.swing.JTextField price;
     private javax.swing.JTextField quantity;
     private javax.swing.JButton savedatabtn;
-    private javax.swing.JButton update;
+    private javax.swing.JButton showbtn;
+    private javax.swing.JButton updatebtn;
     // End of variables declaration//GEN-END:variables
 }
