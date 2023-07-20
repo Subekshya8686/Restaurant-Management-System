@@ -23,7 +23,6 @@ public class LoginController {
         this.view = view;
 //        view.addLoginListner(new LoginListener());
           new LoginListener().actionPerformed(); 
-        
     }
     
         class LoginListener{
@@ -33,7 +32,7 @@ public class LoginController {
                     model = view.getUser();
                     if(checkUser1(model)){
 
-                    DashboardController d = new DashboardController();
+                    NewDashboard d = new NewDashboard();
                     d.setVisible(true);
                               
                     }
@@ -51,9 +50,7 @@ public class LoginController {
 
 //        private void dispose() {
 //            }
-
-
-
+    }
         public boolean checkUser1(LoginModel user) throws Exception {
 
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -74,8 +71,7 @@ public class LoginController {
             
             return false;
         }
-
-    }}
+}
 
     
 

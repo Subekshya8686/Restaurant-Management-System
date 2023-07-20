@@ -300,9 +300,7 @@ public class SignUp extends javax.swing.JFrame {
 
     private void registerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerActionPerformed
         // TODO add your handling code here:
-          RegisterController r =new RegisterController(this);
-
-            
+          RegisterController r =new RegisterController(this);    
     }//GEN-LAST:event_registerActionPerformed
 
     public void addLoginListener(ActionListener log){

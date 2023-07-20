@@ -4,6 +4,11 @@
  */
 package model;
 
+import static org.junit.Assert.assertEquals;
+import org.junit.Test;
+
+
+
 public class LoginModel {
     String username, password;
     public LoginModel(String username, String password){
@@ -26,5 +31,38 @@ public class LoginModel {
     public void setPassword(String password) {
         this.password = password;
     }
+    
+    
+     @Test
+    public void testGetData() {
+        // Arrange
+        model.LoginModel model = new model.LoginModel(username, password);
+        model.setUsername(username);
+        model.setPassword(password);
+
+        // Act
+        String user = model.getUsername();
+        String pass = model.getPassword();
+
+        // Assert
+        assertEquals(username, user);
+        assertEquals(password, pass);
+    }
+
+    @Test
+    public void testSetData() {
+        // Arrange
+        model.LoginModel model = new model.LoginModel(username, password);
+
+        // Act
+        model.setUsername(username);
+        model.setPassword(password);
+        
+
+        // Assert
+        assertEquals(username, model.getUsername());
+        assertEquals(password, model.getPassword());
+    }
 }
+
 

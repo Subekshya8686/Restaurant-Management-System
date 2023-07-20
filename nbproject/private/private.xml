@@ -4,10 +4,18 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
 <<<<<<< HEAD
+            <file>file:/E:/Java%20NetBeans/Restaurant-Management-System/test/controller/RegisterControllerTest.java</file>
+            <file>file:/E:/Java%20NetBeans/Restaurant-Management-System/src/controller/ForgotPwdController.java</file>
+            <file>file:/E:/Java%20NetBeans/Restaurant-Management-System/test/controller/LoginControllerTest.java</file>
+            <file>file:/E:/Java%20NetBeans/Restaurant-Management-System/src/controller/RegisterController.java</file>
+            <file>file:/E:/Java%20NetBeans/Restaurant-Management-System/src/controller/LoginController.java</file>
+=======
+<<<<<<< HEAD
 =======
             <file>file:/C:/Users/Nishant/Documents/NetBeansProjects/Restaurant-Management-System/src/view/DashboardPage.java</file>
 >>>>>>> f6d4ee49853867b60c38f06cd9ea0a9c435dac86
             <file>file:/C:/Users/Nishant/Documents/NetBeansProjects/Restaurant-Management-System/src/view/NewDashboard.java</file>
+>>>>>>> c4827b363a5d5cff8b0e8fca0f4d3daa83fd3743
         </group>
     </open-files>
 </project-private>
