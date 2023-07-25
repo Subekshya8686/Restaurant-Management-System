@@ -31,8 +31,14 @@ public class AuthenticNepaliController {
         view.deleteAuthenticNepaliListner(Delete);
         view.updateAuthenticNepaliListner(Update);
         view.showAuthenticNepaliListner(Show);
+        
     }
     
+   
+       
+
+    
+//    class a implements ActionListener{
     public void addButtonClicked(String itemNo, String itemName, String quantity, String price, JTable AuthenticNepalistock) {
             try{
                 model = view.getData();
@@ -118,9 +124,9 @@ public class AuthenticNepaliController {
         Model.setRowCount(0);
 
         }
-
+    }
     
-}
+//}
 
     
     

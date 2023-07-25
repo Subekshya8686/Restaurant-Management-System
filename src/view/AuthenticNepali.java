@@ -320,6 +320,7 @@ public class AuthenticNepali extends javax.swing.JFrame {
     
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
+//        AuthenticNepaliController a = new AuthenticNepaliController(this, Save, Delete, Update, Show);
        DefaultTableModel Model = (DefaultTableModel) AuthenticNepalitbl.getModel();
 
         if (AuthenticNepalitbl.getSelectedRowCount() == 1) {
