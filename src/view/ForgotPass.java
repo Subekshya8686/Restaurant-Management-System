@@ -6,12 +6,18 @@ package view;
 import java.sql.*;
 import javax.swing.JOptionPane;
 
+import controller.ForgotPwdController;
+import model.ForgotPwdModel;
+import model.*;
+// import javax.swing.JTextField;
+
 /**
  *
  * @author Dell
  */
 public class ForgotPass extends javax.swing.JFrame {
-    
+    ForgotPwdController controller;
+    ForgotPwdModel model;
 
     /**
      * Creates new form ForgotPass
@@ -19,6 +25,20 @@ public class ForgotPass extends javax.swing.JFrame {
     public ForgotPass() {
         initComponents();
         
+    }
+
+    public ForgotPwdModel getUser() {
+        model=new ForgotPwdModel(Username.getText(), securityque.getText(), answer.getText(), newpass.getText());
+        return model;
+    }
+  
+      public void setMessage(String msg) {
+        JOptionPane.showMessageDialog(this, msg);
+    }
+      
+    
+    public void myreset(){
+        securityque.setText("");
     }
 
     /**
@@ -162,7 +182,7 @@ public class ForgotPass extends javax.swing.JFrame {
                         .addComponent(newpass, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(59, 59, 59)
+                        .addGap(63, 63, 63)
                         .addComponent(jButton3)))
                 .addGap(18, 18, 18)
                 .addComponent(jButton2)
@@ -188,11 +208,11 @@ public class ForgotPass extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(newpass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton3))
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addGap(24, 24, 24))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
