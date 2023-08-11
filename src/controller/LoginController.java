@@ -5,6 +5,7 @@
 package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import view.*;
@@ -16,21 +17,24 @@ public class LoginController {
     LoginRMS view;
     ResultSet rs;
     Statement stmt;
-    
+
+//           
     public LoginController(LoginRMS view){
         this.view = view;
-        view.addLoginListner(new LoginListener());
-        
+//        view.addLoginListner(new LoginListener());
+          new LoginListener().actionPerformed(); 
     }
     
-        class LoginListener implements ActionListener{
-            
-            @Override
-            public void actionPerformed(ActionEvent e1){      
+        class LoginListener{
+                       
+            public void actionPerformed(){      
                 try{
                     model = view.getUser();
-                    if(checkUser(model)){
-                        view.setMessage("Login Successfully");
+                    if(checkUser1(model)){
+
+                    NewDashboard d = new NewDashboard();
+                    d.setVisible(true);
+                              
                     }
                     else{
                         view.setMessage("Invalid username or password");
@@ -41,17 +45,22 @@ public class LoginController {
                     System.out.println(e.getMessage());
                 }
             }
-        }
         
-        public boolean checkUser(LoginModel user) throws Exception {
+        
+
+//        private void dispose() {
+//            }
+    }
+        public boolean checkUser1(LoginModel user) throws Exception {
+
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/rms","root","subekshya");
             String sql = "select * from register where Username='"+user.getUsername()+"' AND Password= '"+user.getPassword()+"' ";
             try{
-                Statement stmt =conn.createStatement();
-                ResultSet rs= stmt.executeQuery(sql);
+                stmt =conn.createStatement();
+                rs= stmt.executeQuery(sql);
                 if(rs.next()){
-                    return true;
+                    return (true);
                 }
                 conn.close();
             }
