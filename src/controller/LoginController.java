@@ -52,7 +52,6 @@ public class LoginController {
 //            }
     }
         public boolean checkUser1(LoginModel user) throws Exception {
-
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/rms","root","subekshya");
             String sql = "select * from register where Username='"+user.getUsername()+"' AND Password= '"+user.getPassword()+"' ";
