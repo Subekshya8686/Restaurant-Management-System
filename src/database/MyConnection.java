@@ -12,16 +12,15 @@ import java.sql.DriverManager;
  * @author 97798
  */
 public class MyConnection {
+        @SuppressWarnings("UseSpecificCatch")
         public static Connection doConnect(){
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/rms","root","subekshya");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/rms","root","at123thapa");
             
             System.out.println("connected"); 
             return conn;
-        }
-        
-        catch(Exception e){
+        }catch(Exception e){
             System.out.println(e.getMessage());
         }
         return null;

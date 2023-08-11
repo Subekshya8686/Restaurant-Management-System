@@ -3,35 +3,54 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package view;
-
+/*
 import database.DbConnection;
+import controller.*;
+import controller.staffController;
+import java.awt.event.ActionEvent;
+import model.*;
+import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import java.sql.*;
 //import database.*
+import model.staffModel;
 import java.sql.DriverManager;
 import java.sql.Connection;
 import java.awt.print.PrinterException;
 import java.text.MessageFormat;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JPanel;
+import javax.swing.JTable;
+//import java.util.logging.Level;
+//import java.util.logging.Logger;
 
 /**
  *
  * @author Dell
  */
 public class staff extends javax.swing.JFrame {
-    PreparedStatement prepstmt = null;
+//    PreparedStatement prepstmt = null;
+//    
+//    DefaultTableModel model = null;
+//    
+//    public staffModel mod;
+//    private staffController controller;
+//    private List<staffModel> staffList;
+//    private staff staffObject;
+
     
-    DefaultTableModel model = null;
-    /**
-     * Creates new form staff
-     */
     
-    
-    public staff() {
+    /*public staff() {
         initComponents();
-    }
+//        mod = new staffModel();
+mod=new staffModel(name.getText(),position.getText(),email.getText(),phone.getText());
+
+        staffList = new ArrayList<>();
+        controller=new staffController(mod,staffList,staffObject);
+
+    }*/
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -363,24 +382,42 @@ public class staff extends javax.swing.JFrame {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
-        if(name.getText().equals("") || position.getText().equals("") || email.getText().equals("") || phone.getText().equals("")){
-            JOptionPane.showMessageDialog(this, "Please enter all data");
-        }else{
-            String data[] = {name.getText(),position.getText(),email.getText(),phone.getText()};
-            DefaultTableModel model = (DefaultTableModel) tableStaffs.getModel();
-            model.addRow(data);
-            JOptionPane.showMessageDialog(this, "Data added auccessfully!!");
-        }
+        /*String Name=name.getText();
+        String Position=position.getText();
+        String Email=email.getText();
+        String Phone=phone.getText();
         
-        name.setText("");
-        position.setText("");
-        email.setText("");
-        phone.setText("");
-                
-                
-                
-               
-                
+        controller.addStaff(Name, Position, Email, Phone);*/
+        /*String Name=name.getText();
+        String Position=position.getText();
+        String Email=email.getText();
+        String Phone=phone.getText();
+        
+        staffModel mod=new staffModel( Name,Position,Email,Phone);
+        
+        staffController con=new staffController(mod,this);
+        con.addstaff(Name, Position, Email, Phone);
+        */
+        
+        
+//        if(name.getText().equals("") || position.getText().equals("") || email.getText().equals("") || phone.getText().equals("")){
+//            JOptionPane.showMessageDialog(this, "Please enter all data");
+//        }else{
+//            String data[] = {name.getText(),position.getText(),email.getText(),phone.getText()};
+//            DefaultTableModel model = (DefaultTableModel) tableStaffs.getModel();
+//            model.addRow(data);
+//            JOptionPane.showMessageDialog(this, "Data added auccessfully!!");
+//        }
+//        
+//        name.setText("");
+//        position.setText("");
+//        email.setText("");
+//        phone.setText("");
+//                
+//                
+//                
+//               
+//                
 
 
 
@@ -394,145 +431,201 @@ public class staff extends javax.swing.JFrame {
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
-        DefaultTableModel model = (DefaultTableModel) tableStaffs.getModel();
-        
-        if(tableStaffs.getSelectedRowCount() ==1){
-            model.removeRow(tableStaffs.getSelectedRow());
-        }else{
-            if(tableStaffs.getRowCount()==0){
-                JOptionPane.showMessageDialog(this, "Table is empty!!");
-            }else{
-                JOptionPane.showMessageDialog(this, "Please select Single row for deletion");
-            }
-        }
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-//        int row = tableStaffs.getSelectedRow();
-//
-//        if(row<0){
-//            JOptionPane.showMessageDialog(this,
-//                "No row is selected! Please select one row",
-//                "Select row",
-//                JOptionPane.ERROR_MESSAGE);
+//        staffController controller= new staffController;
+//      controller.deleteSelectedStaff();
+     /*   int selectedRowIndex=tableStaffs.getSelectedRow();
+     staffController con1=new staffController(mod, staffList, this);
+                
+//staffController con=new staffController(mod,this);
+        System.out.println(this);
+        con1.deleteSelectedStaff();
+*/
+//        DefaultTableModel model = (DefaultTableModel) tableStaffs.getModel();
+//        
+//        if(tableStaffs.getSelectedRowCount() ==1){
+//            model.removeRow(tableStaffs.getSelectedRow());
 //        }else{
-//            DefaultTableModel model = (DefaultTableModel) tableStaffs.getModel();
-//            model.removeRow(row);
+//            if(tableStaffs.getRowCount()==0){
+//                JOptionPane.showMessageDialog(this, "Table is empty!!");
+//            }else{
+//                JOptionPane.showMessageDialog(this, "Please select Single row for deletion");
+//            }
 //        }
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+////        int row = tableStaffs.getSelectedRow();
+////
+////        if(row<0){
+////            JOptionPane.showMessageDialog(this,
+////                "No row is selected! Please select one row",
+////                "Select row",
+////                JOptionPane.ERROR_MESSAGE);
+////        }else{
+////            DefaultTableModel model = (DefaultTableModel) tableStaffs.getModel();
+////            model.removeRow(row);
+////        }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void savedataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_savedataActionPerformed
         // TODO add your handling code here:
-        DefaultTableModel model = (DefaultTableModel) tableStaffs.getModel();
-//        String name, position, email, phone;
+
         
-        if(model.getRowCount()==0){
-            JOptionPane.showMessageDialog(this,"Table is Empty");
-        }else{
-            try{
-                String Name, Position, Email, Phone;
-                Class.forName("com.mysql.cj.jdbc.Driver");
-                Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/project","root","asdfgzxcv123");
-                for(int i = 0; i<model.getRowCount();i++){
-                    Name = model.getValueAt(i,0).toString();
-                    Position = model.getValueAt(i,1).toString();
-                    Email = model.getValueAt(i,2).toString();
-                    Phone = model.getValueAt(i,3).toString();
-                    
-                    
-                    String sql = "insert into staff(name,position,email,phone) values (?,?,?,?)";
-                    prepstmt = conn.prepareStatement(sql);
-                    prepstmt.setString(1,Name);
-                    prepstmt.setString(2,Position);
-                    prepstmt.setString(3,Email);
-                    prepstmt.setString(4,Phone);
-                    
-                    prepstmt.execute();
-                    
-                }
-                
-                JOptionPane.showMessageDialog(this,"Data insert successfully!!");
-                model.setRowCount(0);
-            }catch(Exception e){                
-            }        
-        }
+//        staffController controller = new staffController(new staffModel(), this);
         
-//        tableStaffs.setTableHeader("*******Staffs*******"+
-//                "\n\n");
+        
+        
+        
+//        DefaultTableModel model = (DefaultTableModel) tableStaffs.getModel();
+////        String name, position, email, phone;
+//        
+//        if(model.getRowCount()==0){
+//            JOptionPane.showMessageDialog(this,"Table is Empty");
+//        }else{
+//            try{
+//                String Name, Position, Email, Phone;
+//                Class.forName("com.mysql.cj.jdbc.Driver");
+//                Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/project","root","at123thapa");
+//                for(int i = 0; i<model.getRowCount();i++){
+//                    Name = model.getValueAt(i,0).toString();
+//                    Position = model.getValueAt(i,1).toString();
+//                    Email = model.getValueAt(i,2).toString();
+//                    Phone = model.getValueAt(i,3).toString();
+//                    
+//                    
+//                    String sql = "insert into staff(name,position,email,phone) values (?,?,?,?)";
+//                    prepstmt = conn.prepareStatement(sql);
+//                    prepstmt.setString(1,Name);
+//                    prepstmt.setString(2,Position);
+//                    prepstmt.setString(3,Email);
+//                    prepstmt.setString(4,Phone);
+//                    
+//                    prepstmt.execute();
+//                    
+//                }
 //                
+//                JOptionPane.showMessageDialog(this,"Data insert successfully!!");
+//                model.setRowCount(0);
+//            }catch(Exception e){                
+//            }        
+//        }
 //        
-//        tableStaffs.setText(tableStaffs.getTableHeader()+"\n\n"+
-//                "Name: " + name.getText()+"\n\n"+
-//                "Position: " + position.getText()+"\n\n"+
-//                "Email: " + email.getText()+"\n\n" +
-//                "Phone Number: " + phone.getText()+"\n\n");
-//        
-//        
-//        txtPrint.setText(txtPrint.getText());
+////        tableStaffs.setTableHeader("*******Staffs*******"+
+////                "\n\n");
+////                
+////        
+////        tableStaffs.setText(tableStaffs.getTableHeader()+"\n\n"+
+////                "Name: " + name.getText()+"\n\n"+
+////                "Position: " + position.getText()+"\n\n"+
+////                "Email: " + email.getText()+"\n\n" +
+////                "Phone Number: " + phone.getText()+"\n\n");
+////        
+////        
+////        txtPrint.setText(txtPrint.getText());
     }//GEN-LAST:event_savedataActionPerformed
 
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
         // TODO add your handling code here:
+//        int selectedRow = tableStaffs.getSelectedRow();
         
-        DefaultTableModel model = (DefaultTableModel) tableStaffs.getModel();
-        if(tableStaffs.getSelectedRowCount()==1){
-            String Name = name.getText();
-            String Position = position.getText();
-            String Email = email.getText();
-            String Phone = phone.getText();
-            
-            
-            model.setValueAt(Name,tableStaffs.getSelectedRow(),0);
-            model.setValueAt(Position,tableStaffs.getSelectedRow(),1);
-            model.setValueAt(Email,tableStaffs.getSelectedRow(),2);
-            model.setValueAt(Phone,tableStaffs.getSelectedRow(),3);
-            
-            JOptionPane.showMessageDialog(this, "Update Successfully!!");
-        }else{
-            if(tableStaffs.getRowCount()==0){
-                JOptionPane.showMessageDialog(this, "Table is empty!!");
-            }else{
-                JOptionPane.showMessageDialog(this, "Please select single row for update!!");
-            }
-        }
-        
-        
-        
-        
+//        String Name = name.getText();
+//        String Position = position.getText();
+//        String Email = email.getText();
+//        String Phone = phone.getText();
+//        staffController con1=new staffController(mod, staffList, Show);
+//        
+//        con1.updateStaff(Name, Position, Email, Phone);
+//    /*    int selectedRowIndex=tableStaffs.getSelectedRow();
+//        int id 
+//        String Name=name.getText();
+//        String Position=position.getText();
+//        String Email=email.getText();
+//        String Phone=phone.getText();
+//        mod=new staffModel( id,Name,Position,Email,Phone);
+//        
+//        
+//        staffController con=new staffController(mod,this);
+//        con.updateStaff(id, Name, Position, Email, Phone);
+//        */
+////        DefaultTableModel model = (DefaultTableModel) tableStaffs.getModel();
+////        if(tableStaffs.getSelectedRowCount()==1){
+////            String Name = name.getText();
+////            String Position = position.getText();
+////            String Email = email.getText();
+////            String Phone = phone.getText();
+////            
+////            
+////            model.setValueAt(Name,tableStaffs.getSelectedRow(),0);
+////            model.setValueAt(Position,tableStaffs.getSelectedRow(),1);
+////            model.setValueAt(Email,tableStaffs.getSelectedRow(),2);
+////            model.setValueAt(Phone,tableStaffs.getSelectedRow(),3);
+////            
+////            JOptionPane.showMessageDialog(this, "Update Successfully!!");
+////        }else{
+////            if(tableStaffs.getRowCount()==0){
+////                JOptionPane.showMessageDialog(this, "Table is empty!!");
+////            }else{
+////                JOptionPane.showMessageDialog(this, "Please select single row for update!!");
+////            }
+////        }
+////        
+////        
+////        
+////        
     }//GEN-LAST:event_updateActionPerformed
+
 
     private void tableStaffsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableStaffsMouseClicked
         // TODO add your handling code here:
-        DefaultTableModel model = (DefaultTableModel)tableStaffs.getModel();
-        String tblname = model.getValueAt(tableStaffs.getSelectedRow(),0).toString();
-        String tblposition = model.getValueAt(tableStaffs.getSelectedRow(),1).toString();
-        String tblemail = model.getValueAt(tableStaffs.getSelectedRow(),2).toString();
-        String tblphone = model.getValueAt(tableStaffs.getSelectedRow(),3).toString();
+        // TODO add your handling code here:
+//            int selectedRow = tableStaffs.getSelectedRow();
+    
+   /* // Check if a row is selected
+    if (selectedRow >= 0) {
+        // Retrieve the values from the selected row in the table
+        String Name = tableStaffs.getValueAt(selectedRow, 0).toString();
+        String Position = tableStaffs.getValueAt(selectedRow, 1).toString();
+        String Email = tableStaffs.getValueAt(selectedRow, 2).toString();
+        String Phone = tableStaffs.getValueAt(selectedRow, 3).toString();
         
-        name.setText(tblname);
-        position.setText(tblposition);
-        email.setText(tblemail);
-        phone.setText(tblphone);
-        
-        
-        
+        // Set the retrieved values in the corresponding text fields
+        name.setText(Name);
+        position.setText(Position);
+        email.setText(Email);
+        phone.setText(Phone);
+    }
+*/
+
+//        DefaultTableModel model = (DefaultTableModel)tableStaffs.getModel();
+//        String tblname = model.getValueAt(tableStaffs.getSelectedRow(),0).toString();
+//        String tblposition = model.getValueAt(tableStaffs.getSelectedRow(),1).toString();
+//        String tblemail = model.getValueAt(tableStaffs.getSelectedRow(),2).toString();
+//        String tblphone = model.getValueAt(tableStaffs.getSelectedRow(),3).toString();
+//        
+//        name.setText(tblname);
+//        position.setText(tblposition);
+//        email.setText(tblemail);
+//        phone.setText(tblphone);
+//        
+//        
+//        
         
        
     }//GEN-LAST:event_tableStaffsMouseClicked
 
     private void txtPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrintActionPerformed
-       MessageFormat header = new MessageFormat("Test Report");
+    /*   MessageFormat header = new MessageFormat("Test Report");
         MessageFormat footer = new MessageFormat("Page{0,number,integer}");
         try{
             tableStaffs.print();
@@ -540,42 +633,97 @@ public class staff extends javax.swing.JFrame {
         catch(Exception e){
             System.out.println(e.getMessage());
         }
-
+*/
     }//GEN-LAST:event_txtPrintActionPerformed
 
     private void ShowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShowActionPerformed
         // TODO add your handling code here:
-        setShow();
-    }
-    
-    public void setShow(){
-        
-        try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project","root","asdfgzxcv123");
-            PreparedStatement pst = con.prepareStatement("select * from staff");
-            ResultSet rs = pst.executeQuery();
-            
-            while(rs.next()){
-                String name = rs.getString("name");
-                String position = rs.getString("position");
-                String email = rs.getString("email");
-                String phone = rs.getString("phone");
-                
-                Object[] obj = {name, position, email, phone};
-                
-                model = (DefaultTableModel)tableStaffs.getModel();
-                model.addRow(obj);
-            }
-            
-            
-            
-        }catch(Exception e){
-            e.printStackTrace();
-            
-        }
+        /*staffController con =new staffController(mod,this);
+        con.showButtonActionPerformed();*/
+
+////        setShow();
+//    }
+//    
+//    public void setShow(){
+//        
+//        try{
+//            Class.forName("com.mysql.cj.jdbc.Driver");
+//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project","root","at123thapa");
+//            PreparedStatement pst = con.prepareStatement("select * from staff");
+//            ResultSet rs = pst.executeQuery();
+//            
+//            while(rs.next()){
+//                String name = rs.getString("name");
+//                String position = rs.getString("position");
+//                String email = rs.getString("email");
+//                String phone = rs.getString("phone");
+//                
+//                Object[] obj = {name, position, email, phone};
+//                
+//                model = (DefaultTableModel)tableStaffs.getModel();
+//                model.addRow(obj);
+//            }
+//            
+//            
+//            
+//        }catch(Exception e){
+//            e.printStackTrace();
+//            
+//        }
     }//GEN-LAST:event_ShowActionPerformed
 
+//    public JTable tableStaffsl(){
+//        JPanel tablePanel=new JPanel();
+//        
+//        tableStaffs=new JTable();
+//        tableStaffs.
+//        )setModel(new DefaultTableModel(
+//                new Object [][]{},
+//                new String []{"Name","Position","Email","Phone Number"}
+//        ));
+//        return tablePanel;
+//    }
+//    
+/*    public JTable gettableStaffs(){
+        return tableStaffs;
+    }
+    
+    public void addRowToTable(String name, String position, String email, String phone) {
+        DefaultTableModel model = (DefaultTableModel) tableStaffs.getModel();
+        model.addRow(new Object[]{name, position, email, phone});
+    }
+    public void removeRowFromTable(int selectedRow) {
+        DefaultTableModel tableModel = (DefaultTableModel) tableStaffs.getModel();
+        
+        // Check if the selected row is within the valid range
+        if (selectedRow >= 0 && selectedRow < tableModel.getRowCount()) {
+            // Remove the row from the table model
+            tableModel.removeRow(selectedRow);
+        }
+    }    
+    
+    public void updateRowInTable(int rowIndex, String name, String position, String email, String phone) {
+        DefaultTableModel tableModel = (DefaultTableModel) tableStaffs.getModel();
+        
+        // Check if the rowIndex is within the valid range
+        if (rowIndex >= 0 && rowIndex < tableModel.getRowCount()) {
+            // Update the values in the corresponding row
+            tableModel.setValueAt(name, rowIndex, 0); // Assuming name is in column 0
+            tableModel.setValueAt(position, rowIndex, 1); // Assuming position is in column 1
+            tableModel.setValueAt(email, rowIndex, 2); // Assuming email is in column 2
+            tableModel.setValueAt(phone, rowIndex, 3); // Assuming phone is in column 3
+        }
+    }
+        
+ 
+    public void clearFields(){
+        name.setText("");
+        position.setText("");
+        email.setText("");
+        phone.setText("");
+        tableStaffs.clearSelection();
+    }
+//
     /**
      * @param args the command line arguments
      */
@@ -612,6 +760,7 @@ public class staff extends javax.swing.JFrame {
             }
         });
     }
+  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Show;
@@ -635,5 +784,4 @@ public class staff extends javax.swing.JFrame {
     private javax.swing.JButton txtPrint;
     private javax.swing.JButton update;
     // End of variables declaration//GEN-END:variables
-
 }
