@@ -26,13 +26,13 @@ public class DbConnection {
 
             String username = "root";
 
-            String password = "@pramudita2004";
+            String password = "at123thapa";
 
             Class.forName("com.mysql.cj.jdbc.Driver");
 
             connection = DriverManager.getConnection(
 
-                    "jdbc:mysql://localhost:3306/Signup",username,password);
+                    "jdbc:mysql://localhost:3306/signup",username,password);
 
 
 

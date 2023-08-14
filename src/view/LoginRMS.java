@@ -11,6 +11,7 @@ import view.*;
 import controller.*;
 import database.*;
 import java.sql.*;
+import javax.swing.JTextField;
 
 
 
@@ -23,6 +24,11 @@ public class LoginRMS extends javax.swing.JFrame {
      */
     public LoginRMS() {
         initComponents();
+    }
+    
+    public LoginRMS(JTextField txtuser,JTextField txtpwd){
+        this.txtuser= txtuser;
+        this.txtpwd=txtpwd;
     }
 
     @SuppressWarnings("unchecked")
@@ -245,7 +251,6 @@ public class LoginRMS extends javax.swing.JFrame {
         public LoginModel getUser(){
         model = new LoginModel(txtuser.getText(), txtpwd.getText());
         return model;
-
         }
         
         public void setMessage(String msg){

@@ -26,7 +26,7 @@ public class DashboardController {
        catch(Exception e){
            
        }
-   }
+    }} 
     
 //    public void totalbutton(DashboardModel model, NewDashboard view ){
 //        double tax = model.getTax();
@@ -46,6 +46,5 @@ public class DashboardController {
 //        catch(){
            
 //        }
-//    }
    
-}
+   

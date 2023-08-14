@@ -4,42 +4,35 @@
  */
 package controller;
 
+import model.LoginModel;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import controller.LoginController;
-import model.LoginModel;
-import view.LoginRMS;
 import static org.junit.Assert.*;
-
+import view.*;
+import controller.*;
+import model.*;
 public class LoginControllerTest {
-    
+    LoginRMS lview = new LoginRMS();
+    LoginController lcon = new LoginController(lview);
+    LoginModel lmod = new LoginModel("admin", "admin");
     public LoginControllerTest() {
     }
     
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
-    }
 
+    
     @Test
-    public void testSomeMethod() throws Exception {
-        LoginController controller = new LoginController(new LoginRMS());
-        Boolean check = controller.checkUser1(new LoginModel("user", "123"));
+    public void testactionpeformed() throws Exception {
+        System.out.println("checkUser1");
+        LoginController lcon = new LoginController(lview);
+//        lview.txtuser.setText("admin");
+//        lview.txtpwd.setText("admin");
+//        lview.btnlogin.doClick();
+        Boolean check = lcon.checkUser1(new LoginModel("admin","admin"));
         assertEquals(true, check);
+        
     }
     
 }

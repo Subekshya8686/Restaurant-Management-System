@@ -4,8 +4,8 @@
  */
 package model;
 
-import static org.junit.Assert.assertEquals;
-import org.junit.Test;
+//import static org.junit.Assert.assertEquals;
+//import org.junit.Test;
 
 
 
@@ -33,36 +33,36 @@ public class LoginModel {
     }
     
     
-     @Test
-    public void testGetData() {
-        // Arrange
-        model.LoginModel model = new model.LoginModel(username, password);
-        model.setUsername(username);
-        model.setPassword(password);
-
-        // Act
-        String user = model.getUsername();
-        String pass = model.getPassword();
-
-        // Assert
-        assertEquals(username, user);
-        assertEquals(password, pass);
-    }
-
-    @Test
-    public void testSetData() {
-        // Arrange
-        model.LoginModel model = new model.LoginModel(username, password);
-
-        // Act
-        model.setUsername(username);
-        model.setPassword(password);
-        
-
-        // Assert
-        assertEquals(username, model.getUsername());
-        assertEquals(password, model.getPassword());
-    }
+//     @Test
+//    public void testGetData() {
+//        // Arrange
+//        model.LoginModel model = new model.LoginModel(username, password);
+//        model.setUsername(username);
+//        model.setPassword(password);
+//
+//        // Act
+//        String user = model.getUsername();
+//        String pass = model.getPassword();
+//
+//        // Assert
+//        assertEquals(username, user);
+//        assertEquals(password, pass);
+//    }
+//
+//    @Test
+//    public void testSetData() {
+//        // Arrange
+//        model.LoginModel model = new model.LoginModel(username, password);
+//
+//        // Act
+//        model.setUsername(username);
+//        model.setPassword(password);
+//        
+//
+//        // Assert
+//        assertEquals(username, model.getUsername());
+//        assertEquals(password, model.getPassword());
+//    }
 }
 
 
